@@ -6,4 +6,5 @@ sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flat
 
 echo "Remember to add your flatpak store extension:\nGNOME: apt install gnome-software-plugin-flatpak\nKDE: apt install plasma-discover-backend-flatpak"
 
-sudo flatpak install flathub com.usebottles.bottles
+sudo flatpak install -y flathub com.usebottles.bottles 
+ln -s $(pwd)/.tmux.conf ~/.tmux.conf
