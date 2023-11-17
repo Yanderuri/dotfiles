@@ -3,3 +3,7 @@ git
 tmux
 keepassxc
 curl
+vlc
+libavcodec-extra
+vim
+flatpak
