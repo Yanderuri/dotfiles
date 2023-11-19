@@ -7,12 +7,12 @@ fi
 
 apt update
 apt upgrade -y
-apt install --no-install-suggests --install-recommends -y $(cat packages.txt)
+apt install --no-install-suggests --install-recommends -y $(cat apps/packages.txt)
 chsh -s $(which zsh)
-flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 echo "Remember to add your flatpak store extension:\nGNOME: apt install gnome-software-plugin-flatpak\nKDE: apt install plasma-discover-backend-flatpak"
 
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 flatpak install -y flathub com.usebottles.bottles
 flatpak install -y flathub com.github.IsmaelMartinez.teams_for_linux
 
