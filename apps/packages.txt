@@ -4,7 +4,7 @@ tmux
 curl
 vlc
 libavcodec-extra
-nvim
+neovim
 flatpak
 alacritty
 nala

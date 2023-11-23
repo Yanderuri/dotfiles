@@ -7,7 +7,12 @@ fi
 
 apt update
 apt upgrade -y
-apt install --no-install-suggests --install-recommends -y $(cat apps/packages.txt)
+
+while IFS= read -r line; do
+	apt install --no-install-suggests --install-recommends -y "$line"
+done < "apps/packages.txt"
+
+
 cp themes/.zshrc ~/.zshrc
 chsh -s $(command -v zsh)
 
@@ -18,14 +23,14 @@ while IFS= read -r flatpak; do
   # Install the Flatpak
   flatpak install -y flathub "$flatpak"
 done < "apps/flatpaks.txt"
-
-exit 0
 # https://stackoverflow.com/questions/592620/how-can-i-check-if-a-program-exists-from-a-bash-script
 
 # 2023-11-18: Hardcoded releases might not work forever
 # But that is a later Vy problem
-curl https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/AnonymousPro.zip -o AnonymousePro.zip
-unzip AnonymousePro.zip -d ~/.local/share/fonts
-fc-cache -fv
+curl https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/AnonymousPro.zip -o AnonymousPro.zip
+
+# The zip downloaded is corrupted somehow
+# unzip AnonymousPro.zip -d ~/.local/share/fonts
+# fc-cache -fv
 
 exit 0
