@@ -1,0 +1,8 @@
+com.logseq.Logseq
+xyz.armcord.ArmCord
+com.jetbrains.IntelliJ-IDEA-Community
+com.jetbrains.Rider
+com.google.AndroidStudio
+com.visualstudio.code
+org.gnome.Boxes
+com.github.tchx84.Flatseal

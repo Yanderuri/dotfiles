@@ -1,9 +1,10 @@
 zsh
 git
 tmux
-keepassxc
 curl
 vlc
 libavcodec-extra
-vim
+nvim
 flatpak
+alacritty
+nala
