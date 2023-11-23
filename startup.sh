@@ -33,4 +33,8 @@ curl https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/AnonymousP
 # unzip AnonymousPro.zip -d ~/.local/share/fonts
 # fc-cache -fv
 
+# If you need to reinstall things such as onedrive and git-credential-oauth
+# Copy the binary over to /usr/opt
+# Symlink the binary into /usr/bin to be accessible from terminal
+
 exit 0
