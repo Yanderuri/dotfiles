@@ -8,3 +8,6 @@ neovim
 flatpak
 alacritty
 nala
+fish
+which
+7zip

@@ -27,7 +27,7 @@ done < "apps/flatpaks.txt"
 
 # 2023-11-18: Hardcoded releases might not work forever
 # But that is a later Vy problem
-curl https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/AnonymousPro.zip -o AnonymousPro.zip
+# curl https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/AnonymousPro.zip -o AnonymousPro.zip
 
 # The zip downloaded is corrupted somehow
 # unzip AnonymousPro.zip -d ~/.local/share/fonts
