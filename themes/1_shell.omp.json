@@ -41,7 +41,7 @@
       "type": "prompt"
     },
     {
-      "alignment": "right",
+      "alignment": "left",
       "segments": [
         {
           "foreground": "#a9ffb4",
