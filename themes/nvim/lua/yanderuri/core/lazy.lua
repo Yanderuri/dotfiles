@@ -13,4 +13,4 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 
-require("lazy").setup("yanderuri.config.plugins")
+require("lazy").setup("yanderuri.config")
