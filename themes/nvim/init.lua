@@ -1,0 +1,2 @@
+require("yanderuri.core.lazy")
+
