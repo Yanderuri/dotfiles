@@ -16,3 +16,4 @@ powertop
 rustc
 cargo
 fastfetch
+firefox
