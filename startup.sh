@@ -5,11 +5,11 @@ if [ "$(id -u)" -ne "$ROOTUID" ] ; then
 fi
 # https://stackoverflow.com/questions/6362428/how-do-i-determine-if-a-shell-script-is-running-with-root-permissions
 
-apt update
-apt upgrade -y
+dnf update
+dnf upgrade -y
 
 while IFS= read -r line; do
-	apt install --no-install-suggests --install-recommends -y "$line"
+	yes | dnf install "$line"
 done < "apps/packages.txt"
 
 cp themes/.zshrc ~/.zshrc
@@ -31,6 +31,7 @@ done < "apps/flatpaks.txt"
 
 # The zip downloaded is corrupted somehow
 # unzip AnonymousPro.zip -d ~/.local/share/fonts
+
 fc-cache -fv
 
 # If you need to reinstall things such as onedrive and git-credential-oauth
