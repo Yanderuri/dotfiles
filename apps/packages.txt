@@ -11,3 +11,9 @@ nala
 fish
 which
 7zip
+brightnessctl
+powertop
+rustc
+cargo
+fastfetch
+firefox
