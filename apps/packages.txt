@@ -3,11 +3,9 @@ git
 tmux
 curl
 vlc
-libavcodec-extra
 neovim
 flatpak
 alacritty
-nala
 fish
 which
 7zip
@@ -16,4 +14,5 @@ powertop
 rustc
 cargo
 fastfetch
-firefox
+btop
+
