@@ -1,7 +1,2 @@
-com.logseq.Logseq
-xyz.armcord.ArmCord
-com.jetbrains.IntelliJ-IDEA-Community
-com.jetbrains.Rider
-org.gnome.Boxes
 com.github.tchx84.Flatseal
 org.keepassxc.KeePassXC
