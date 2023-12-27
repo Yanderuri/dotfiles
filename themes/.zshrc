@@ -4,6 +4,14 @@ plug "zsh-users/zsh-autosuggestions"
 plug "zap-zsh/supercharge"
 # plug "zap-zsh/zap-prompt"
 plug "zsh-users/zsh-syntax-highlighting"
+
+{
+	typeset -ga ZSH_AUTOSUGGEST_STRATEGY
+	ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+
+	typeset -g ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#00f0f0,underline'
+}
+
 plug "Moarram/headline" "main"
 
 
@@ -13,20 +21,20 @@ HEADLINE_PATH_PREFIX=' ' # consider " "
 HEADLINE_BRANCH_PREFIX=' ' # consider " "
 
 # ctrl-left/right
-# bindkey "\e[1;5C" forward-word
-# bindkey "\e[1;5D" backward-word
+bindkey "\e[1;5C" forward-word
+bindkey "\e[1;5D" backward-word
 
 # ctrl-backspace/delete
-# bindkey "\C-_" backward-kill-word
-# bindkey "\e[3;5~" kill-word
-# 
-# # alt-backspace
-# bindkey "\e\d" undo
-# 
+bindkey "\C-_" backward-kill-word
+bindkey "\e[3;5~" kill-word
+ 
+# alt-backspace
+bindkey "\e\d" undo
+ 
 # # DEL, HOME, END
-# bindkey "\e[3~" delete-char
-# bindkey '\e[H' beginning-of-line
-# bindkey '\e[F' end-of-line
+bindkey "\e[3~" delete-char
+bindkey '\e[H' beginning-of-line
+bindkey '\e[F' end-of-line
 
 if [[ "$TERM" != emacs ]]; then
 [[ -z "$terminfo[kdch1]" ]] || bindkey -M emacs "$terminfo[kdch1]" delete-char
