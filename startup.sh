@@ -1,4 +1,5 @@
 ROOTUID="0"
+USER_TO_MODIFY=vy-faye
 if [ "$(id -u)" -ne "$ROOTUID" ] ; then
 	echo "This script must be executed with root privileges."
 	exit 1
@@ -32,7 +33,9 @@ if true; then
 	
 	# The zip downloaded is corrupted somehow
 	# unzip AnonymousPro.zip -d ~/.local/share/fonts
-	
+	cd /home/$USER_TO_MODIFY/Downloads
+	wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/Monofur.zip
+	unzip Monofur.zip -d Monofur/ 
 	fc-cache -fv
 fi 
 
