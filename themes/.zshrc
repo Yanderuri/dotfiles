@@ -12,14 +12,14 @@ plug "zsh-users/zsh-syntax-highlighting"
 	typeset -g ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#00f0f0,underline'
 }
 
-plug "Moarram/headline" "main"
-
-
-HEADLINE_USER_PREFIX='' # consider " "
-HEADLINE_HOST_PREFIX='' # consider " "
-HEADLINE_PATH_PREFIX=' ' # consider " "
-HEADLINE_BRANCH_PREFIX=' ' # consider " "
-
+{
+	plug "Moarram/headline" "main"
+	
+	HEADLINE_USER_PREFIX='' # consider " "
+	HEADLINE_HOST_PREFIX='' # consider " "
+	HEADLINE_PATH_PREFIX=' ' # consider " "
+	HEADLINE_BRANCH_PREFIX=' ' # consider " "
+}
 # ctrl-left/right
 bindkey "\e[1;5C" forward-word
 bindkey "\e[1;5D" backward-word
