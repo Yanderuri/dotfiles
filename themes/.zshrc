@@ -19,7 +19,12 @@ plug "zsh-users/zsh-syntax-highlighting"
 	HEADLINE_HOST_PREFIX='' # consider " "
 	HEADLINE_PATH_PREFIX=' ' # consider " "
 	HEADLINE_BRANCH_PREFIX=' ' # consider " "
+	HEADLINE_DO_CLOCK=true
+	HEADLINE_STYLE_CLOCK=$bold
 }
+
+plug "cowboyd/zsh-rust"
+
 # ctrl-left/right
 bindkey "\e[1;5C" forward-word
 bindkey "\e[1;5D" backward-word

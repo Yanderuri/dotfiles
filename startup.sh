@@ -35,7 +35,8 @@ if true; then
 	# unzip AnonymousPro.zip -d ~/.local/share/fonts
 	cd /home/$USER_TO_MODIFY/Downloads
 	wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/Monofur.zip
-	unzip Monofur.zip -d Monofur/ 
+	unzip Monofur.zip -d Monofur/
+	cp -r Monofur/ /usr/share/fonts
 	fc-cache -fv
 fi 
 
