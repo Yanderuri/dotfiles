@@ -83,5 +83,9 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 fi
 
 # Load and initialise completion system
+
+
+alias hyprland-config="nvim ~/.config/hypr/hyprland.conf"
+
 autoload -Uz compinit
 compinit
