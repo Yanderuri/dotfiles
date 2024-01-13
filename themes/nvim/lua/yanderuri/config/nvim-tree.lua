@@ -3,7 +3,7 @@ return {
 	version = "*",
 	lazy = false,
 	dependencies = {
-	"nvim-tree/nvim-web-devicons",
+		"nvim-tree/nvim-web-devicons",
 	},
 	config = function()
 		-- disable netrw at the very start of your init.lua

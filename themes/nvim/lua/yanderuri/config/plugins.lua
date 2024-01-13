@@ -3,7 +3,17 @@ return {
 		require("yanderuri.config.nvim-tree")
 	},
 	{
-		"github/copilot.vim",
+		"ms-jpq/coq_nvim",
+		dependencies = {
+			'ms-jpq/coq.artifacts'
+		},
+		cmd = {
+			"COQnow",
+			"COQdeps",
+		},
+		config = function()
+			require("coq_nvim").setup()
+		end,
 	},
 	{ 
 		"lukas-reineke/indent-blankline.nvim",
@@ -12,7 +22,7 @@ return {
 		opts = {
 
 		},
-		config = function()	
+		config = function()
 			vim.cmd('set number')
 			vim.cmd('set relativenumber')
 			local highlight = {
@@ -92,8 +102,32 @@ return {
 					-- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
 				},
 			})
-		-- setup must be called before loading
 		vim.cmd.colorscheme "catppuccin"
 		end,
 	},
+	{
+		"andweeb/presence.nvim",
+		enabled = false,
+	},
+	{
+		'nvim-lualine/lualine.nvim',
+		lazy = false,
+		dependencies = { 
+			'nvim-tree/nvim-web-devicons' 
+		},
+		config = function()
+			lualine_opts = {
+				sections = {
+				    lualine_a = {'mode'},
+				    lualine_b = {'branch', 'diff', 'diagnostics'},
+				    lualine_c = {'filename'},
+				    lualine_x = {'encoding', 'fileformat', 'filetype'},
+				    lualine_y = {'progress'},
+				    lualine_z = {'location'}
+				},
+				theme = auto,
+			},
+			require("lualine").setup(lualine_opts)
+		end,
+	}
 }
