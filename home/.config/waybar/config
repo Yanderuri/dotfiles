@@ -7,7 +7,7 @@
 
     "position": "top",
 
-    "height": 36,
+//     "height": 72 ,
 
     "margin-left": 10,
     "margin-bottom": 0,
@@ -115,7 +115,7 @@
             "critical": 15
         },
         "format": "{icon} {capacity}%",
-        "format-charging": " {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
         "format-plugged": " {capacity}%",
         "format-icons": [
             "",
@@ -344,7 +344,7 @@
         //on-scroll-down: "${wpctl} set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 0.04+";
         //on-scroll-up: "${wpctl} set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 0.04-";
         "format": "<span foreground='#fab387'>{icon}</span>  {volume}%",
-        "format-muted": " ",
+        "format-muted": "󰖁",
         "format-source": "",
         "format-source-muted": "",
         //"format-muted": "<span foreground='#fab387'> </span>",
