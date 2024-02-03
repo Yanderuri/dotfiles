@@ -2,6 +2,7 @@ return {
 	"nvim-tree/nvim-tree.lua",
 	version = "*",
 	lazy = false,
+	priority = 25,
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
 	},
@@ -12,10 +13,13 @@ return {
 
 		-- set termguicolors to enable highlight groups
 		vim.opt.termguicolors = true
-		require("nvim-tree").setup({
+		tree_opts = {
 			sort = {
-				sorter = "case_sensitive",
+				sorter = "name",
+				folders_first = true,
+				files_first = false,
 			},
-		})
+		},
+		require("nvim-tree").setup(tree_opts)
 	end,
 }

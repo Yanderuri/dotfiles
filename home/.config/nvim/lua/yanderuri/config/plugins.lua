@@ -1,27 +1,22 @@
 return {
 	{
-		require("yanderuri.config.nvim-tree")
-	},
-	{
 		"ms-jpq/coq_nvim",
 		dependencies = {
-			'ms-jpq/coq.artifacts'
+			"ms-jpq/coq.artifacts",
 		},
-		cmd = {
-			"COQnow",
-			"COQdeps",
+		lazy = false,
+		priority = 25,
+		opts = {
+
 		},
 		config = function()
-			require("coq_nvim").setup()
+			vim.cmd("COQnow --shut-up")
 		end,
 	},
 	{ 
 		"lukas-reineke/indent-blankline.nvim",
 		lazy = false,
 		main = "ibl", 
-		opts = {
-
-		},
 		config = function()
 			vim.cmd('set number')
 			vim.cmd('set relativenumber')
@@ -81,7 +76,7 @@ return {
 					keywords = {},
 					strings = {},
 					variables = {},
-					numbers = {},
+					numbers = { "bold" },
 					booleans = {},
 					properties = {},
 					types = {},
@@ -95,6 +90,7 @@ return {
 					nvimtree = true,
 					treesitter = true,
 					notify = false,
+
 					mini = {
 					    enabled = true,
 					    indentscope_color = "",
@@ -106,28 +102,47 @@ return {
 		end,
 	},
 	{
-		"andweeb/presence.nvim",
-		enabled = false,
-	},
-	{
 		'nvim-lualine/lualine.nvim',
 		lazy = false,
+		priority = 1000,
 		dependencies = { 
 			'nvim-tree/nvim-web-devicons' 
 		},
-		config = function()
-			lualine_opts = {
-				sections = {
-				    lualine_a = {'mode'},
-				    lualine_b = {'branch', 'diff', 'diagnostics'},
-				    lualine_c = {'filename'},
-				    lualine_x = {'encoding', 'fileformat', 'filetype'},
-				    lualine_y = {'progress'},
-				    lualine_z = {'location'}
-				},
-				theme = auto,
+		opts = {
+			sections = {
+			    lualine_a = {'mode'},
+			    lualine_b = {'branch', 'diff', 'diagnostics'},
+			    lualine_c = {'filename'},
+			    lualine_x = {'encoding', 'fileformat', 'filetype'},
+			    lualine_y = {'progress'},
+			    lualine_z = {'location'}
 			},
-			require("lualine").setup(lualine_opts)
-		end,
-	}
+			theme = auto,
+		},
+	},
+	{
+		'akinsho/toggleterm.nvim',
+		enabled = true,
+		-- version = "*",
+		lazy = false,
+		opts = {
+			auto_scroll = true,
+			direction = "float",
+			open_mapping = [[<c-\>]],
+			float_opts = {
+			    -- The border key is *almost* the same as 'nvim_open_win'
+			    -- see :h nvim_open_win for details on borders however
+			    -- the 'curved' border is a custom border type
+			    -- not natively supported but implemented in this plugin.
+			    border = 'curved',
+			    --- width = <value>,
+			    --- height = <value>,
+			    --- row = <value>,
+			    --- col = <value>,
+			    winblend = 1,
+			    --- zindex = <value>,
+			    title_pos = 'center',
+			},
+		},
+	},
 }
