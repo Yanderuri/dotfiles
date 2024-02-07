@@ -1,21 +1,31 @@
-return {
-	{
-		"ms-jpq/coq_nvim",
-		dependencies = {
-			"ms-jpq/coq.artifacts",
-		},
-		lazy = false,
-		priority = 25,
-		opts = {
+local table_mod = require "table"
 
+local coding_opts = {
+	"lua",
+	"rs",
+	"cpp",
+	"c",
+	"hpp",
+	"h",
+}
+local config_opts = {
+	"yml",
+	"yaml",
+	"config",
+	"conf",
+}
+return {
+	{	
+		'akinsho/bufferline.nvim', 
+		version = "*", 
+		ft = coding_opts,
+		dependencies = {
+			'nvim-tree/nvim-web-devicons'
 		},
-		config = function()
-			vim.cmd("COQnow --shut-up")
-		end,
 	},
 	{ 
 		"lukas-reineke/indent-blankline.nvim",
-		lazy = false,
+		ft = coding_opts,
 		main = "ibl", 
 		config = function()
 			vim.cmd('set number')
@@ -66,9 +76,10 @@ return {
 	},
 	{
 		'akinsho/toggleterm.nvim',
-		enabled = true,
 		-- version = "*",
-		lazy = false,
+		keys = {
+			[[<c-\>]],
+		},
 		opts = {
 			auto_scroll = true,
 			direction = "float",
@@ -88,5 +99,50 @@ return {
 			    title_pos = 'center',
 			},
 		},
+	},
+	{
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		ft = coding_opts,
+		event = "InsertEnter",
+		config = function()
+			copilot_opts = {
+					suggestion = {
+					enabled = true,
+					auto_trigger = false,
+					debounce = 75,
+					keymap = {
+					      accept = "<M-l>",
+					      accept_word = false,
+					      accept_line = false,
+					      next = "<M-]>",
+					      prev = "<M-[>",
+					      dismiss = "<C-]>",
+				      },
+				},
+			},
+			require("copilot").setup(copilot_opts)
+		end,
+	},
+	{
+		"folke/which-key.nvim",
+	},
+	{
+		"ms-jpq/coq_nvim",
+		dependencies = {
+			"ms-jpq/coq.artifacts",
+		},
+		priority = 25,
+		ft = coding_opts,
+		config = function()
+			vim.cmd("COQnow --shut-up")
+		end,
+	},
+	{
+		"lervag/vimtex",
+		lazy = false,
+		config = function()
+			vim.cmd("syntax enable")
+		end,
 	},
 }
