@@ -30,7 +30,7 @@ return {
 					functions = {},
 					keywords = {},
 					strings = {},
-					variables = {},
+					variables = { "bold" },
 					numbers = { "bold" },
 					booleans = {},
 					properties = {},
@@ -64,6 +64,7 @@ return {
 		config = function()
 			opts = {
 				transparent = true,
+				dimInactive = true,
 			},
 			require("kanagawa").setup(opts)
 			vim.cmd("colorscheme kanagawa")

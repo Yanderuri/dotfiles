@@ -1,4 +1,4 @@
-local table_mod = require "table"
+require "table"
 
 local coding_opts = {
 	"lua",
@@ -7,25 +7,34 @@ local coding_opts = {
 	"c",
 	"hpp",
 	"h",
+	"tex",
 }
 local config_opts = {
 	"yml",
 	"yaml",
 	"config",
 	"conf",
+	"zshrc",
+	"toml",
 }
+
+local all_files_opts = {
+	unpack(config_opts), 
+	unpack(coding_opts),
+}
+
 return {
 	{	
 		'akinsho/bufferline.nvim', 
 		version = "*", 
-		ft = coding_opts,
+		ft = all_files_opts,
 		dependencies = {
 			'nvim-tree/nvim-web-devicons'
 		},
 	},
 	{ 
 		"lukas-reineke/indent-blankline.nvim",
-		ft = coding_opts,
+		ft = all_files_opts,
 		main = "ibl", 
 		config = function()
 			vim.cmd('set number')
@@ -126,14 +135,28 @@ return {
 	},
 	{
 		"folke/which-key.nvim",
+		lazy = false,
 	},
 	{
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		init = function()
+		vim.o.timeout = true
+		vim.o.timeoutlen = 300
+		end,
+		opts = {
+		-- your configuration comes here
+		-- or leave it empty to use the default settings
+		-- refer to the configuration section below
+		}
+	},
+    	{
 		"ms-jpq/coq_nvim",
 		dependencies = {
 			"ms-jpq/coq.artifacts",
 		},
 		priority = 25,
-		ft = coding_opts,
+		ft = all_files_opts,
 		config = function()
 			vim.cmd("COQnow --shut-up")
 		end,
@@ -141,6 +164,7 @@ return {
 	{
 		"lervag/vimtex",
 		lazy = false,
+		enable = false,
 		config = function()
 			vim.cmd("syntax enable")
 		end,
