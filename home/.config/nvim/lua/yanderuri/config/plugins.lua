@@ -1,4 +1,4 @@
-require "table"
+local table = require "table"
 
 local coding_opts = {
 	"lua",
@@ -9,6 +9,7 @@ local coding_opts = {
 	"h",
 	"tex",
 }
+
 local config_opts = {
 	"yml",
 	"yaml",
@@ -16,25 +17,44 @@ local config_opts = {
 	"conf",
 	"zshrc",
 	"toml",
+	"task",
 }
 
-local all_files_opts = {
-	unpack(config_opts), 
-	unpack(coding_opts),
+local all_possible_events = {
+	"BufEnter",   -- entering a buffer, ie file opening
+	"VimEnter",   -- launching nvim
+	"InsertEnter", -- entering inetert mode
 }
+local all_files_opts = {}
+
+for i = 1,#config_opts do
+	all_files_opts[#all_files_opts+1] = config_opts[i]
+end
+
+for i = 1,#coding_opts do
+	all_files_opts[#all_files_opts+1] = coding_opts[i]
+end
 
 return {
 	{	
 		'akinsho/bufferline.nvim', 
 		version = "*", 
-		ft = all_files_opts,
+		event = {
+			"BufEnter",
+		},
 		dependencies = {
 			'nvim-tree/nvim-web-devicons'
 		},
+		config = function()
+			vim.opt.termguicolors = true
+			require("bufferline").setup()
+		end,
 	},
 	{ 
 		"lukas-reineke/indent-blankline.nvim",
-		ft = all_files_opts,
+		event = {
+			"InsertEnter",
+		},
 		main = "ibl", 
 		config = function()
 			vim.cmd('set number')
@@ -66,53 +86,38 @@ return {
 	},
 	{
 		'nvim-lualine/lualine.nvim',
-		lazy = false,
 		priority = 1000,
+		event = {
+			"BufEnter",
+		},
 		dependencies = { 
 			'nvim-tree/nvim-web-devicons' 
 		},
-		opts = {
-			sections = {
-			    lualine_a = {'mode'},
-			    lualine_b = {'branch', 'diff', 'diagnostics'},
-			    lualine_c = {'filename'},
-			    lualine_x = {'encoding', 'fileformat', 'filetype'},
-			    lualine_y = {'progress'},
-			    lualine_z = {'location'}
-			},
-			theme = auto,
+		config = function()
+			opts = {
+				extensions = {
+					"nvim-tree",
+					"toggleterm",
+				},
+				sections = {
+				    lualine_a = {'mode'},
+				    lualine_b = {'branch', 'diff', 'diagnostics'},
+				    lualine_c = {'filename'},
+				    lualine_x = {'encoding', 'fileformat', 'filetype'},
+				    lualine_y = {'progress'},
+				    lualine_z = {'location'}
+				},
+			theme = "gruvbox-material",
 		},
+		require("lualine").setup(opts)
+		end,
 	},
 	{
-		'akinsho/toggleterm.nvim',
-		-- version = "*",
-		keys = {
-			[[<c-\>]],
-		},
-		opts = {
-			auto_scroll = true,
-			direction = "float",
-			open_mapping = [[<c-\>]],
-			float_opts = {
-			    -- The border key is *almost* the same as 'nvim_open_win'
-			    -- see :h nvim_open_win for details on borders however
-			    -- the 'curved' border is a custom border type
-			    -- not natively supported but implemented in this plugin.
-			    border = 'curved',
-			    --- width = <value>,
-			    --- height = <value>,
-			    --- row = <value>,
-			    --- col = <value>,
-			    winblend = 1,
-			    --- zindex = <value>,
-			    title_pos = 'center',
-			},
-		},
+	 	'AndreM222/copilot-lualine'
 	},
-	{
+		{
 		"zbirenbaum/copilot.lua",
 		cmd = "Copilot",
-		ft = coding_opts,
 		event = "InsertEnter",
 		config = function()
 			copilot_opts = {
@@ -135,14 +140,10 @@ return {
 	},
 	{
 		"folke/which-key.nvim",
-		lazy = false,
-	},
-	{
-		"folke/which-key.nvim",
 		event = "VeryLazy",
 		init = function()
-		vim.o.timeout = true
-		vim.o.timeoutlen = 300
+			vim.o.timeout = true
+			vim.o.timeoutlen = 300
 		end,
 		opts = {
 		-- your configuration comes here
@@ -156,17 +157,50 @@ return {
 			"ms-jpq/coq.artifacts",
 		},
 		priority = 25,
-		ft = all_files_opts,
+		event = "InsertEnter",
 		config = function()
 			vim.cmd("COQnow --shut-up")
 		end,
 	},
 	{
-		"lervag/vimtex",
-		lazy = false,
-		enable = false,
-		config = function()
-			vim.cmd("syntax enable")
-		end,
+		"brenton-leighton/multiple-cursors.nvim",
+		version = "*",  -- Use the latest tagged version
+		opts = {},  -- This causes the plugin setup function to be called
+		keys = {
+			{"<C-Down>", "<Cmd>MultipleCursorsAddDown<CR>", mode = {"n", "i"}},
+			{"<C-j>", "<Cmd>MultipleCursorsAddDown<CR>"},
+			{"<C-Up>", "<Cmd>MultipleCursorsAddUp<CR>", mode = {"n", "i"}},
+			{"<C-k>", "<Cmd>MultipleCursorsAddUp<CR>"},
+			{"<C-LeftMouse>", "<Cmd>MultipleCursorsMouseAddDelete<CR>", mode = {"n", "i"}},
+			{"<Leader>a", "<Cmd>MultipleCursorsAddBySearch<CR>", mode = {"n", "x"}},
+			{"<Leader>A", "<Cmd>MultipleCursorsAddBySearchV<CR>", mode = {"n", "x"}},
+		},
 	},
-}
+	{
+		"folke/trouble.nvim",
+		dependencies = { 
+			"nvim-tree/nvim-web-devicons"
+		},
+		opts = {
+ 		-- your configuration comes here
+ 		-- or leave it empty to use the default settings
+ 		-- refer to the configuration section below
+ 		},
+	},
+	{
+		"folke/noice.nvim",
+		event = "VeryLazy",
+		opts = {
+			-- add any options here
+		},
+		dependencies = {
+			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+			"MunifTanjim/nui.nvim",
+			-- OPTIONAL:
+			-- `nvim-notify` is only needed, if you want to use the notification view.
+			-- If not available, we use `mini` as the fallback
+			"rcarriga/nvim-notify",
+			"nvim-treesitter/nvim-treesitter",
+		},
+	},
+}	

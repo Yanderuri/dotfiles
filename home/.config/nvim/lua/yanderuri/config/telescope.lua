@@ -10,6 +10,4 @@ return {
 	opts = {
 
 	},
-	config = function()
-	end,
 }

@@ -16,7 +16,7 @@ return {
 				show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
 				term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
 				dim_inactive = {
-					enabled = true, -- dims the background color of inactive window
+					enabled = false, -- dims the background color of inactive window
 					shade = "dark",
 					percentage = 0.15, -- percentage of the shade to apply to the inactive window
 				},
@@ -54,20 +54,22 @@ return {
 				},
 			}
 			require("catppuccin").setup(opts)
-		vim.cmd.colorscheme "catppuccin"
+		vim.cmd([[colorscheme catppuccin]])
 		end,
 	},
 	{
 		"rebelot/kanagawa.nvim",
 		lazy = false,
+		enabled = true,
 		priority = 1000,
 		config = function()
 			opts = {
-				transparent = true,
-				dimInactive = true,
+				transparent = false,
+				dimInactive = false,
 			},
 			require("kanagawa").setup(opts)
-			vim.cmd("colorscheme kanagawa")
+			vim.cmd([[ set background=dark]])
+			vim.cmd([[colorscheme kanagawa-dragon]])
 		end,
 	},
 	{
@@ -75,14 +77,12 @@ return {
 		name = "tint",
 		lazy = false,
 		priority = 900,
-		ft = {
-			"lua",
-		},
 		config = function()
-			opts = {
+			tint_opts = {
 				tint = -50,
+				saturation = 1.0,
 			},
-			require("tint").setup(opts)
+			require("tint").setup(tint_opts)
 		end,
 	},
 }

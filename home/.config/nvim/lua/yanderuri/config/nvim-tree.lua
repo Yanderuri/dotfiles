@@ -1,8 +1,10 @@
 return {
 	"nvim-tree/nvim-tree.lua",
 	version = "*",
-	lazy = false,
 	priority = 25,
+	event = {
+		"BufEnter",
+	},
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
 	},
@@ -14,6 +16,7 @@ return {
 		-- set termguicolors to enable highlight groups
 		vim.opt.termguicolors = true
 		tree_opts = {
+			theme = auto,
 			sort = {
 				sorter = "name",
 				folders_first = true,
