@@ -47,13 +47,15 @@ return {
 		},
 		config = function()
 			vim.opt.termguicolors = true
+			vim.cmd([[set wrap]])
+			vim.cmd([[set linebreak]])
 			require("bufferline").setup()
 		end,
 	},
 	{ 
 		"lukas-reineke/indent-blankline.nvim",
 		event = {
-			"InsertEnter",
+			"BufEnter",
 		},
 		main = "ibl", 
 		config = function()

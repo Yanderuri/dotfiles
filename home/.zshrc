@@ -2,22 +2,22 @@
 bindkey "\e[1;5C" forward-word
 bindkey "\e[1;5D" backward-word
 
-# # ctrl-backspace/delete
+# ctrl-backspace/delete
 bindkey "\C-_" backward-kill-word
 bindkey "\e[3;5~" kill-word
 #  
-# # alt-backspace
+# alt-backspace
 bindkey "\e\d" undo
 #  
-# # # DEL, HOME, END
+# DEL, HOME, END
 bindkey "\e[3~" delete-char
 bindkey '\e[H' beginning-of-line
 bindkey '\e[F' end-of-line
 # 
-# # create a zkbd compatible hash;
-# # to add other keys to this hash, see: man 5 terminfo
+# create a zkbd compatible hash;
+# to add other keys to this hash, see: man 5 terminfo
 typeset -g -A key
-# 
+ 
 key[Home]="${terminfo[khome]}"
 key[End]="${terminfo[kend]}"
 key[Insert]="${terminfo[kich1]}"
@@ -64,14 +64,12 @@ export SUDO_EDITOR=nvim
 export EDITOR=nvim
 export ZSHRC="/home/vy-faye/.zshrc"
 export STARSHIP_CONFIG="/home/vy-faye/.config/starship/starship.toml"
-
 # "$(sheldon completions --shell zsh)"
 eval "$(sheldon source)"
+eval "$(atuin init zsh)"
 . "/opt/asdf-vm/asdf.sh"
 eval "$(pay-respects zsh --alias damn)"
 eval "$(starship init zsh)"
 
 autoload -Uz compinit
 compinit
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
