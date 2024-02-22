@@ -1,9 +1,12 @@
 return {
 	"nvim-tree/nvim-tree.lua",
 	version = "*",
-	lazy = false,
+	priority = 25,
+	event = {
+		"BufEnter",
+	},
 	dependencies = {
-	"nvim-tree/nvim-web-devicons",
+		"nvim-tree/nvim-web-devicons",
 	},
 	config = function()
 		-- disable netrw at the very start of your init.lua
@@ -12,10 +15,14 @@ return {
 
 		-- set termguicolors to enable highlight groups
 		vim.opt.termguicolors = true
-		require("nvim-tree").setup({
+		tree_opts = {
+			theme = auto,
 			sort = {
-				sorter = "case_sensitive",
+				sorter = "name",
+				folders_first = true,
+				files_first = false,
 			},
-		})
+		},
+		require("nvim-tree").setup(tree_opts)
 	end,
 }

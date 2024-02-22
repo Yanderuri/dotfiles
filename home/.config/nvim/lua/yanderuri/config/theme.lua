@@ -1,52 +1,12 @@
 return {
 	{
-		require("yanderuri.config.nvim-tree")
-	},
-	{
-		"github/copilot.vim",
-	},
-	{ 
-		"lukas-reineke/indent-blankline.nvim",
-		lazy = false,
-		main = "ibl", 
-		opts = {
-
-		},
-		config = function()	
-			vim.cmd('set number')
-			vim.cmd('set relativenumber')
-			local highlight = {
-			    "RainbowRed",
-			    "RainbowYellow",
-			    "RainbowBlue",
-			    "RainbowOrange",
-			    "RainbowGreen",
-			    "RainbowViolet",
-			    "RainbowCyan",
-			}
-
-			local hooks = require "ibl.hooks"
-			-- create the highlight groups in the highlight setup hook, so they are reset
-			-- every time the colorscheme changes
-			hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-			    vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
-			    vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
-			    vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
-			    vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
-			    vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
-			    vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
-			    vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
-			end)
-			require("ibl").setup { indent = { highlight = highlight } }
-		end,
-	},
-	{ 
 		"catppuccin/nvim", 
 		name = "catppuccin",
+		enabled = false,
 		priority = 1000,
 		lazy = false,
 		config = function()
-			require("catppuccin").setup({
+			opts = {
 				flavour = "frappe", -- latte, frappe, macchiato, mocha
 				background = { -- :h background
 					light = "latte",
@@ -56,7 +16,7 @@ return {
 				show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
 				term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
 				dim_inactive = {
-					enabled = true, -- dims the background color of inactive window
+					enabled = false, -- dims the background color of inactive window
 					shade = "dark",
 					percentage = 0.15, -- percentage of the shade to apply to the inactive window
 				},
@@ -70,8 +30,8 @@ return {
 					functions = {},
 					keywords = {},
 					strings = {},
-					variables = {},
-					numbers = {},
+					variables = { "bold" },
+					numbers = { "bold" },
 					booleans = {},
 					properties = {},
 					types = {},
@@ -83,17 +43,46 @@ return {
 					cmp = true,
 					gitsigns = true,
 					nvimtree = true,
-					treesitter = true,
+					treesitter = false,
 					notify = false,
+
 					mini = {
 					    enabled = true,
 					    indentscope_color = "",
 					},
 					-- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
 				},
-			})
-		-- setup must be called before loading
-		vim.cmd.colorscheme "catppuccin"
+			}
+			require("catppuccin").setup(opts)
+		vim.cmd([[colorscheme catppuccin]])
+		end,
+	},
+	{
+		"rebelot/kanagawa.nvim",
+		lazy = false,
+		enabled = true,
+		priority = 1000,
+		config = function()
+			opts = {
+				transparent = false,
+				dimInactive = false,
+			},
+			require("kanagawa").setup(opts)
+			vim.cmd([[ set background=dark]])
+			vim.cmd([[colorscheme kanagawa-dragon]])
+		end,
+	},
+	{
+		"levouh/tint.nvim",
+		name = "tint",
+		lazy = false,
+		priority = 900,
+		config = function()
+			tint_opts = {
+				tint = -50,
+				saturation = 1.0,
+			},
+			require("tint").setup(tint_opts)
 		end,
 	},
 }

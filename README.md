@@ -1,6 +1,7 @@
 # vy_setup
-Personal repo to rebuild any Debian system.
+Personal repo to rebuild any Arch system.
 
 ## To do:
-- [ ] Automate installing Oh-my-posh
-- [ ] Modify to also work on Fedora
+- [ ] Fix the symlinks
+- [ ] Stop procrastinating on classwork
+- [ ] NixOS?
