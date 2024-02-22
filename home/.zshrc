@@ -64,12 +64,17 @@ export SUDO_EDITOR=nvim
 export EDITOR=nvim
 export ZSHRC="/home/vy-faye/.zshrc"
 export STARSHIP_CONFIG="/home/vy-faye/.config/starship/starship.toml"
+alias meh="yay"
+alias ":q"="exit"
+
+
 # "$(sheldon completions --shell zsh)"
 eval "$(sheldon source)"
 eval "$(atuin init zsh)"
 . "/opt/asdf-vm/asdf.sh"
 eval "$(pay-respects zsh --alias damn)"
 eval "$(starship init zsh)"
+# source "/usr/share/nvm/init-nvm.sh"
 
 autoload -Uz compinit
 compinit

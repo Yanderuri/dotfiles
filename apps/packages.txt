@@ -6,13 +6,10 @@ vlc
 neovim
 flatpak
 alacritty
-fish
-which
 7zip
 brightnessctl
 powertop
 rustc
 cargo
 fastfetch
-btop
-
+firefox

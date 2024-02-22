@@ -24,6 +24,7 @@ local all_possible_events = {
 	"BufEnter",   -- entering a buffer, ie file opening
 	"VimEnter",   -- launching nvim
 	"InsertEnter", -- entering inetert mode
+	"VeryLazy",     -- loading shit at the very last minute
 }
 local all_files_opts = {}
 
@@ -205,4 +206,8 @@ return {
 			"nvim-treesitter/nvim-treesitter",
 		},
 	},
+	{
+		'dense-analysis/ale',
+		event = "VeryLazy",
+	}
 }	
