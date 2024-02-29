@@ -55,19 +55,17 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 	add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
 fi
 
-# Load and initialise completion system
 
 
-alias hyprland-config="nvim ~/.config/hypr/hyprland.conf"
-alias nvim-config="nvim ~/.config/nvim/."
 export SUDO_EDITOR=nvim
 export EDITOR=nvim
 export ZSHRC="/home/vy-faye/.zshrc"
 export STARSHIP_CONFIG="/home/vy-faye/.config/starship/starship.toml"
 alias meh="yay"
 alias ":q"="exit"
-
-
+alias hyprland-config="nvim ~/.config/hypr/hyprland.conf"
+alias nvim-config="nvim ~/.config/nvim/."
+alias lgit="lazygit"
 # "$(sheldon completions --shell zsh)"
 eval "$(sheldon source)"
 eval "$(atuin init zsh)"

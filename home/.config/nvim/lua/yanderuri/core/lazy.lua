@@ -25,3 +25,5 @@ opts = {
 }
 
 require("lazy").setup("yanderuri.config", opts)
+
+vim.opt.cursorline = true

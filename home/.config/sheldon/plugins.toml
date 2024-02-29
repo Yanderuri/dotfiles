@@ -13,12 +13,18 @@ shell = "zsh"
 
 [plugins]
 
-
+[plugins.zsh-defer]
+github = "romkatv/zsh-defer"
 [plugins.syntax_higlighting]
 github = "zsh-users/zsh-syntax-highlighting"
-
+apply = ["defer"]
 [plugins."z.lua"]
 github = "skywind3000/z.lua"
-
+# source = "/home/vy-faye/.local/share/sheldon/repos/github.com/skywind3000/z.lua/z.lua.plugin.zsh"
 [plugins.supercharge]
 github = "zap-zsh/supercharge"
+[plugins.zsh-autosuggestions]
+github = "zsh-users/zsh-autosuggestions"
+use = ["{{ name }}.zsh"]
+[templates]
+defer = "{{ hooks?.pre | nl }}{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}{{ hooks?.post | nl }}"

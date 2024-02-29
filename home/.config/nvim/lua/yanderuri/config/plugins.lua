@@ -1,40 +1,40 @@
-local table = require "table"
-
-local coding_opts = {
-	"lua",
-	"rs",
-	"cpp",
-	"c",
-	"hpp",
-	"h",
-	"tex",
-}
-
-local config_opts = {
-	"yml",
-	"yaml",
-	"config",
-	"conf",
-	"zshrc",
-	"toml",
-	"task",
-}
-
+-- local table = require "table"
+-- 
+-- local coding_opts = {
+-- 	"lua",
+-- 	"rs",
+-- 	"cpp",
+-- 	"c",
+-- 	"hpp",
+-- 	"h",
+-- 	"tex",
+-- }
+-- 
+-- local config_opts = {
+-- 	"yml",
+-- 	"yaml",
+-- 	"config",
+-- 	"conf",
+-- 	"zshrc",
+-- 	"toml",
+-- 	"task",
+-- }
+-- 
 local all_possible_events = {
 	"BufEnter",   -- entering a buffer, ie file opening
 	"VimEnter",   -- launching nvim
 	"InsertEnter", -- entering inetert mode
 	"VeryLazy",     -- loading shit at the very last minute
 }
-local all_files_opts = {}
-
-for i = 1,#config_opts do
-	all_files_opts[#all_files_opts+1] = config_opts[i]
-end
-
-for i = 1,#coding_opts do
-	all_files_opts[#all_files_opts+1] = coding_opts[i]
-end
+-- local all_files_opts = {}
+-- 
+-- for i = 1,#config_opts do
+-- 	all_files_opts[#all_files_opts+1] = config_opts[i]
+-- end
+-- 
+-- for i = 1,#coding_opts do
+-- 	all_files_opts[#all_files_opts+1] = coding_opts[i]
+-- end
 
 return {
 	{	
@@ -209,5 +209,6 @@ return {
 	{
 		'dense-analysis/ale',
 		event = "VeryLazy",
+		enabled = true,
 	}
 }	

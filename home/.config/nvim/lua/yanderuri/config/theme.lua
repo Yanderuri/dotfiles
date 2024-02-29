@@ -64,7 +64,7 @@ return {
 		priority = 1000,
 		config = function()
 			opts = {
-				transparent = false,
+				transparent = true,
 				dimInactive = false,
 			},
 			require("kanagawa").setup(opts)
