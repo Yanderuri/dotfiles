@@ -24,7 +24,9 @@ local all_possible_events = {
 	"BufEnter",   -- entering a buffer, ie file opening
 	"VimEnter",   -- launching nvim
 	"InsertEnter", -- entering inetert mode
+	"InsertLeave",
 	"VeryLazy",     -- loading shit at the very last minute
+	"BufWinEnter",
 }
 -- local all_files_opts = {}
 -- 
@@ -94,7 +96,8 @@ return {
 			"BufEnter",
 		},
 		dependencies = { 
-			'nvim-tree/nvim-web-devicons' 
+			'nvim-tree/nvim-web-devicons',
+			'AndreM222/copilot-lualine'
 		},
 		config = function()
 			opts = {
@@ -116,12 +119,12 @@ return {
 		end,
 	},
 	{
-	 	'AndreM222/copilot-lualine'
-	},
-		{
 		"zbirenbaum/copilot.lua",
 		cmd = "Copilot",
 		event = "InsertEnter",
+		dependencies = {
+			'AndreM222/copilot-lualine'
+		},
 		config = function()
 			copilot_opts = {
 					suggestion = {
@@ -210,5 +213,6 @@ return {
 		'dense-analysis/ale',
 		event = "VeryLazy",
 		enabled = true,
+		cond = nil,
 	}
 }	

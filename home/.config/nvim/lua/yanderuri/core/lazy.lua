@@ -21,9 +21,14 @@ opts = {
 	    cond = nil, ---@type boolean|fun(self:LazyPlugin):boolean|nil
 	    -- version = "*", -- enable this to try installing the latest stable versions of plugins
 	},
-	throttle = 30,
+	-- throttle = 30,
 }
 
 require("lazy").setup("yanderuri.config", opts)
 
+
+
 vim.opt.cursorline = true
+vim.cmd([[filetype on]])
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
