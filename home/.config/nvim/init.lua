@@ -1,2 +1,1 @@
-require("yanderuri.core.lazy")
-vim.cmd("set clipboard+=unnamedplus")
+/nix/store/0hh258z5qdsh04xsvv3ygy2cnnrpqgnm-home-manager-files/.config/nvim/init.lua

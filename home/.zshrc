@@ -74,5 +74,6 @@ eval "$(pay-respects zsh --alias damn)"
 eval "$(starship init zsh)"
 # source "/usr/share/nvm/init-nvm.sh"
 
+alias ls="exa"
 autoload -Uz compinit
 compinit
