@@ -103,11 +103,25 @@
       treesitter = {
         enable = true;
       };
+      treesitter-context = {
+        enable = true;
+        lineNumbers = true;
+      };
+      treesitter-refactor = {
+        enable = true;
+      };
       cmp = {
         enable = true;
         autoEnableSources = true;
+        # trace: warning: The option `plugins.cmp.extraOptions' defined in `/nix/store/x77z523b2vpdsgaj0ysx8rivwwb2200q-source/nixvim.nix' has been renamed to `plugins.cmp.settings'.
+        settings = {
+          mapping = {
+            "<C-Space>" = "cmp.mapping.complete()";
+          };
+        };
       };
       cmp-nvim-lsp.enable = true;
+      cmp-nvim-lua.enable = true;
       cmp-buffer.enable = true;
       cmp-treesitter.enable = true;
       cmp-zsh.enable = true;
