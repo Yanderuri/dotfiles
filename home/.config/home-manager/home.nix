@@ -36,6 +36,7 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+    pkgs.nerdfonts
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -72,7 +73,7 @@
     # EDITOR = "emacs";
   };
   wayland.windowManager.hyprland = {
-    enable = true;
+    enable = false;
     settings = {
       "$mod" = "SUPER";
       bind =
@@ -92,7 +93,8 @@
     zsh = {
       enable = true;
       enableCompletion = true;
-      enableAutosuggestions = true;
+      # enableAutosuggestions = true;
+      autosuggestion.enable = true;
       defaultKeymap = "emacs";
       history = {
         expireDuplicatesFirst = true;
@@ -107,6 +109,8 @@
         # home-config = "nvim ~/.config/home-manager/home.nix";
         lgit="lazygit";
         meh="yay";
+        nixvim="nvim";
+        ":q"="exit";
       };
       sessionVariables = {
         ZSHRC = "$HOME/.zshrc";
@@ -167,7 +171,8 @@
     };
     eza = {
       enable = true;
-      enableAliases = true;
+      # enableAliases = true;
+      enableZshIntegration = true;
       git = true;
       icons = true;
     };
@@ -179,6 +184,20 @@
     };
     fzf = {
       enable = true;
+    };
+    kitty = {
+      enable = false;
+      font = {
+        name = "MonaspiceAr Nerd Font Regular";
+        size = 17;
+      };
+      keybindings = {
+        "ctrl+c" = "copy_or_interrupt";
+      };
+      shellIntegration = {
+        enableZshIntegration = true;
+      };
+      theme = "kanagawabones";
     };
   };
 }

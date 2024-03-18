@@ -30,13 +30,13 @@
       {
         mode = "n";
         key = "<leader>n";
-        action = ":NvimTreeToggle<CR>";
+        action = "<cmd>NvimTreeToggle<CR>";
         options.silent = true;
       }
       {
-        mode = "n";
+        mode = ["n" "t"];
         key = "<leader>t";
-        action = ":ToggleTerm<CR>";
+        action = "<cmd>ToggleTerm<CR>";
         options.silent = true;
       }
     ];
@@ -82,9 +82,16 @@
         viewportBuffer.max = 500;
         viewportBuffer.min = 50;
       };
+      todo-comments = {
+        enable = true;
+      };
       noice = {
         enable = true;
       };
+      # transparent = {
+      #  enable = true;
+      # };
+      notify.enable = true;
       lsp = {
         enable = true;
         servers = {
@@ -100,6 +107,19 @@
           java-language-server.enable = true;
         };
       };
+      lsp-format = {
+        enable = true;
+        lspServersToEnable = "all";
+      };
+      lsp-lines = {
+        enable = true;
+      };
+      lspkind = {
+        enable = true;
+      };
+      lspsaga = {
+        enable = true;
+      };
       treesitter = {
         enable = true;
       };
@@ -110,24 +130,9 @@
       treesitter-refactor = {
         enable = true;
       };
-      cmp = {
-        enable = true;
-        autoEnableSources = true;
-        # trace: warning: The option `plugins.cmp.extraOptions' defined in `/nix/store/x77z523b2vpdsgaj0ysx8rivwwb2200q-source/nixvim.nix' has been renamed to `plugins.cmp.settings'.
-        settings = {
-          mapping = {
-            "<C-Space>" = "cmp.mapping.complete()";
-          };
-        };
+      telescope = {
+        enable = false;
       };
-      cmp-nvim-lsp.enable = true;
-      cmp-nvim-lua.enable = true;
-      cmp-buffer.enable = true;
-      cmp-treesitter.enable = true;
-      cmp-zsh.enable = true;
-      cmp-git.enable = true;
-      cmp-fuzzy-buffer.enable = true;
-      cmp-fuzzy-path.enable = true;
       coq-nvim = {
         enable = true;
         installArtifacts = true;
@@ -138,12 +143,9 @@
       gitsigns = {
         enable = true;
       };
-      illuminate = {
+     /*  illuminate = {
         enable = true;
-      };
-      telescope = {
-        enable = true;
-      };
+      }; */
       nvim-tree = {
         enable = true;
         autoClose = false;
@@ -185,11 +187,6 @@
       };
       comment-nvim = {
         enable = true;
-      };
-      dashboard = {
-        enable = false;
-        center = [
-        ];
       };
     };
     extraConfigLua = ''

@@ -14,15 +14,22 @@
       # url = "github:nix-community/nixvim/nixos-23.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixgl = {
+      url = "github:guibou/nixGL";
+    };
     # hyprland = {
     # url = "github:hyprwm/hyprland";
     #  inputs.nixpkgs.follows = "nixpkgs";
     #};
   };
-  outputs = { nixpkgs, home-manager, ... }@inputs:
+  outputs = { nixpkgs, home-manager, nixgl, ... }@inputs:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      # pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = import nixpkgs {
+        system = "x86_64-linux";
+        overlays = [ nixgl.overlay ];
+      };
       allowUnfree = {nixpkgs.config.allowUnfree = true;};
     in {
       specialArgs = {inherit inputs;};
