@@ -1,6 +1,7 @@
 { config, pkgs, inputs, lib,  ... }:
 {
-  imports = [
+  imports = [   
+    (builtins.fromTOML (builtins.readFile ./pastel.toml))
     ./nixvim.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
@@ -46,7 +47,7 @@
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
-
+    
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
     #   org.gradle.console=verbose
@@ -71,7 +72,10 @@
   #
   home.sessionVariables = {
     # EDITOR = "emacs";
+    ZSHRC = "$HOME/.zshrc";
+    EDITOR = "nvim";
   };
+  fonts.fontconfig.enable = true;
   wayland.windowManager.hyprland = {
     enable = false;
     settings = {
@@ -83,12 +87,16 @@
         ];
     };
   };
-
+  targets = {
+    # darwin.search = "Ecosia";
+    genericLinux.enable = true;
+  };
   # Let Home Manager install and manage itself.
   programs = {
     home-manager.enable = true;
     ssh = {
       enable = true;
+      addKeysToAgent = "confirm";
     };
     zsh = {
       enable = true;
@@ -111,12 +119,12 @@
         meh="yay";
         nixvim="nvim";
         ":q"="exit";
+        vscode="code";
       };
       sessionVariables = {
       	EDITOR = "nvim";
 	SUDO_EDITOR = "nvim";
         ZSHRC = "$HOME/.zshrc";
-        STARSHIP_CONFIG = "$HOME/.config/starship/starship.toml";
       };
     };
     lazygit = {
@@ -150,19 +158,6 @@
     starship = {
       enable = true;
       enableZshIntegration = true;
-      settings = {
-        add_newLine = true;
-        format = lib.concatStrings [
-
-        ];
-        username = {
-          show_always = true;
-          style_user = "bg:#9A348E";
-          style_root = "bg:#9A348E";
-          format = "[$user ]($style)";
-          disabled = false;
-        };
-      };
     };
     tealdeer = {
       enable = true;
@@ -201,5 +196,9 @@
       };
       theme = "kanagawabones";
     };
+  };
+  nix.gc = {
+      automatic = true;
+      frequency = "48hr";
   };
 }
