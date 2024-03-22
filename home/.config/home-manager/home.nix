@@ -113,6 +113,8 @@
         ":q"="exit";
       };
       sessionVariables = {
+      	EDITOR = "nvim";
+	SUDO_EDITOR = "nvim";
         ZSHRC = "$HOME/.zshrc";
         STARSHIP_CONFIG = "$HOME/.config/starship/starship.toml";
       };
