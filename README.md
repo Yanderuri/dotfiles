@@ -1,7 +1,6 @@
 # vy_setup
-Personal repo to rebuild any Arch system.
+My dotfiles, because it's a rite of passage for any Unix enjoyer
 
 ## To do:
-- [ ] Fix the symlinks
-- [ ] Stop procrastinating on classwork
-- [ ] NixOS?
+- [ ] Add screenshots
+- [ ] Fix your nvim config
