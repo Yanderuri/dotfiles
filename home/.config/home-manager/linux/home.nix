@@ -147,6 +147,11 @@
       flags = [
         "--disable-up-arrow"
       ];
+      settings = {
+        auto_sync = true;
+        sync_frequency = "10m";
+        search_mode = "fuzzy";
+      };
     };
     btop = {
       enable = true;
