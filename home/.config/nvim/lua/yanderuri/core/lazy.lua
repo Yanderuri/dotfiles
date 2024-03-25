@@ -25,10 +25,3 @@ opts = {
 }
 
 require("lazy").setup("yanderuri.config", opts)
-
-
-
-vim.opt.cursorline = true
-vim.cmd([[filetype on]])
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
