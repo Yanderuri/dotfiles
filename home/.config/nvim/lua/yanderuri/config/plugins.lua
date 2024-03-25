@@ -1,11 +1,11 @@
-local all_possible_events = {
-	"BufEnter",   -- entering a buffer, ie file opening
-	"VimEnter",   -- launching nvim
-	"InsertEnter", -- entering inetert mode
-	"InsertLeave",
-	"VeryLazy",     -- loading shit at the very last minute
-	"BufWinEnter",
-}
+-- local all_possible_events = {
+-- 	"BufEnter",   -- entering a buffer, ie file opening
+-- 	"VimEnter",   -- launching nvim
+-- 	"InsertEnter", -- entering inetert mode
+-- 	"InsertLeave",
+-- 	"VeryLazy",     -- loading shit at the very last minute
+-- 	"BufWinEnter",
+-- }
 
 return {
 	{
@@ -42,10 +42,10 @@ return {
 			vim.o.timeoutlen = 300
 		end,
 		opts = {
-		-- your configuration comes here
-		-- or leave it empty to use the default settings
-		-- refer to the configuration section below
-		}
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+		},
 	},
 	{
 		"brenton-leighton/multiple-cursors.nvim",
@@ -81,11 +81,13 @@ return {
 		'akinsho/toggleterm.nvim',
 		-- version = "*",
 		event = "VeryLazy";
+		-- keys = "<leader>t",
 		opts = {
 			auto_scroll = true,
 			direction = "float",
 			open_mapping = "<leader>t",
-			start_in_insert = true;
+			start_in_insert = true,
+			insert_mappings = false,
 			autochdir = false, -- when neovim changes it current directory the terminal will change it's own when next it's opened
 			float_opts = {
 			    -- The border key is *almost* the same as 'nvim_open_win'
@@ -104,27 +106,27 @@ return {
 		},
 	},
 	{
-	"nvim-tree/nvim-tree.lua",
-	version = "*",
-	priority = 25,
-	event = {
-		"BufEnter",
-	},
-	dependencies = {
-		"nvim-tree/nvim-web-devicons",
-	},
-	config = function()	
-		-- set termguicolors to enable highlight groups
-		vim.opt.termguicolors = true
-		tree_opts = {
-			theme = auto,
-			sort = {
-				sorter = "name",
-				folders_first = true,
-				files_first = false,
-			},
+		"nvim-tree/nvim-tree.lua",
+		version = "*",
+		priority = 25,
+		event = {
+			"BufEnter",
 		},
-		require("nvim-tree").setup(tree_opts)
-	end,
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+		},
+		config = function()	
+			-- set termguicolors to enable highlight groups
+			vim.opt.termguicolors = true
+			tree_opts = {
+				theme = auto,
+				sort = {
+					sorter = "name",
+					folders_first = true,
+					files_first = false,
+				},
+			},
+			require("nvim-tree").setup(tree_opts)
+		end,
 	}
 }	

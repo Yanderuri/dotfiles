@@ -12,6 +12,7 @@ return {
 	},
 	{ 
 		"lukas-reineke/indent-blankline.nvim",
+		enabled = true,
 		event = {
 			"BufEnter",
 		},
@@ -92,9 +93,7 @@ return {
 	{	
 		'akinsho/bufferline.nvim', 
 		version = "*", 
-		event = {
-			"BufEnter",
-		},
+		event = "BufEnter",
 		dependencies = {
 			'nvim-tree/nvim-web-devicons'
 		},
