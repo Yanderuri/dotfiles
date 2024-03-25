@@ -17,7 +17,7 @@ return {
 		},
 		config = function()
 			copilot_opts = {
-					suggestion = {
+				suggestion = {
 					enabled = true,
 					auto_trigger = false,
 					debounce = 75,
@@ -28,7 +28,7 @@ return {
 					      next = "<M-]>",
 					      prev = "<M-[>",
 					      dismiss = "<C-]>",
-				      },
+					},
 				},
 			},
 			require("copilot").setup(copilot_opts)
@@ -39,7 +39,7 @@ return {
 		event = "VeryLazy",
 		init = function()
 			vim.o.timeout = true
-			vim.o.timeoutlen = 300
+			vim.o.timeoutlen = 500
 		end,
 		opts = {
 			-- your configuration comes here
@@ -71,6 +71,7 @@ return {
 		},
 		dependencies = {
 			"nvim-lua/plenary.nvim",
+			"BurntSushi/ripgrep",
 			"nvim-telescope/telescope-fzf-native.nvim",
 		},
 		opts = {

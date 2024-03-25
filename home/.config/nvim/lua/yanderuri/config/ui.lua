@@ -104,4 +104,9 @@ return {
 			require("bufferline").setup()
 		end,
 	},
+	{
+		"echasnovski/mini.nvim",
+		event = "VeryLazy",
+		version = false,
+	},
 }

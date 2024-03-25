@@ -2,9 +2,9 @@ return {
 	{
 		"catppuccin/nvim", 
 		name = "catppuccin",
-		enabled = false,
-		priority = 1000,
 		lazy = false,
+		enabled = true,
+		priority = 1000,
 		config = function()
 			opts = {
 				flavour = "frappe", -- latte, frappe, macchiato, mocha
@@ -43,8 +43,8 @@ return {
 					cmp = true,
 					gitsigns = true,
 					nvimtree = true,
-					treesitter = false,
-					notify = false,
+					treesitter = true,
+					notify = true,
 
 					mini = {
 					    enabled = true,
@@ -60,20 +60,25 @@ return {
 	{
 		"rebelot/kanagawa.nvim",
 		lazy = false,
-		enabled = true,
+		enabled = false,
 		priority = 1000,
 		config = function()
 			opts = {
 				transparent = true,
 				dimInactive = false,
+				background = {               	-- map the value of 'background' option to a theme
+					dark = "wave",           -- try "dragon" !
+					light = "lotus"
+				},
 			},
 			require("kanagawa").setup(opts)
-			vim.cmd([[ set background=dark]])
+			vim.cmd([[set background=dark]])
 			vim.cmd([[colorscheme kanagawa-dragon]])
 		end,
 	},
 	{
 		"levouh/tint.nvim",
+		enabed = false,
 		name = "tint",
 		lazy = false,
 		priority = 900,

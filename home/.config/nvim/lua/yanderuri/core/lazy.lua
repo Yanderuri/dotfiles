@@ -15,7 +15,7 @@ vim.opt.rtp:prepend(lazypath)
 opts = {
 	defaults = {
 	    lazy = false, -- should plugins be lazy-loaded?
-	    version = nil,
+	    version = "*",
 	    -- default `cond` you can use to globally disable a lot of plugins
 	    -- when running inside vscode for example
 	    cond = nil, ---@type boolean|fun(self:LazyPlugin):boolean|nil
