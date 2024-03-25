@@ -1,0 +1,9 @@
+[Unit]
+Description=xremap on login
+
+[Service]
+ExecStart=/usr/bin/xremap /home/vy-faye/.config/xremap/config.yml
+Type=simple
+
+[Install]
+WantedBy=default.target
