@@ -45,7 +45,12 @@ return {
 			-- your configuration comes here
 			-- or leave it empty to use the default settings
 			-- refer to the configuration section below
-		},
+			icons = {
+			    breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
+			    separator = "⇏", -- symbol used between a key and it's label
+			    group = "+", -- symbol prepended to a group
+			},
+		}
 	},
 	{
 		"brenton-leighton/multiple-cursors.nvim",
@@ -66,9 +71,10 @@ return {
 		priority = 25,
 		enabled = true,
 		tag = "0.1.5",
-		event = {
-			"VeryLazy",
-		},
+		-- event = {
+		-- 	"VeryLazy",
+		-- },	
+		keys = "<leader>f",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"BurntSushi/ripgrep",
@@ -110,9 +116,7 @@ return {
 		"nvim-tree/nvim-tree.lua",
 		version = "*",
 		priority = 25,
-		event = {
-			"BufEnter",
-		},
+		event = "BufEnter",
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 		},
@@ -120,12 +124,20 @@ return {
 			-- set termguicolors to enable highlight groups
 			vim.opt.termguicolors = true
 			tree_opts = {
+				disable_netrw = true,
+				hijack_netrw = false,
 				theme = auto,
 				sort = {
 					sorter = "name",
 					folders_first = true,
 					files_first = false,
 				},
+				view = {
+				    width = 60,
+				},
+				number = true,
+				relativenumber = true,
+				sync_root_with_cwd = true,
 			},
 			require("nvim-tree").setup(tree_opts)
 		end,

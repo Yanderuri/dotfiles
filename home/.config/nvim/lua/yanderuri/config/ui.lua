@@ -13,9 +13,7 @@ return {
 	{ 
 		"lukas-reineke/indent-blankline.nvim",
 		enabled = true,
-		event = {
-			"BufEnter",
-		},
+		event = "VeryLazy",
 		main = "ibl", 
 		config = function()
 			vim.cmd('set number')
@@ -63,37 +61,49 @@ return {
 	},
 	{
 		'nvim-lualine/lualine.nvim',
-		priority = 1000,
-		event = {
-			"BufEnter",
-		},
+		-- priority = 1000,
+		event = "VeryLazy",
 		dependencies = { 
 			'nvim-tree/nvim-web-devicons',
-			'AndreM222/copilot-lualine'
+			-- 'AndreM222/copilot-lualine'
 		},
 		config = function()
 			opts = {
 				extensions = {
 					"nvim-tree",
 					"toggleterm",
+					"trouble",
 				},
 				sections = {
-				    lualine_a = {'mode'},
-				    lualine_b = {'branch', 'diff', 'diagnostics'},
-				    lualine_c = {'filename'},
-				    lualine_x = {'encoding', 'fileformat', 'filetype'},
-				    lualine_y = {'progress'},
-				    lualine_z = {'location'}
+					    lualine_a = {'mode'},
+					    lualine_b = {'branch', 'diff', 'diagnostics'},
+					    lualine_c = {'filename'},
+					    lualine_x = {'encoding', 'fileformat', 'filetype',
+							{
+								require("lazy.status").updates,
+								cond = require("lazy.status").has_updates,
+								color = { fg = "#ff9e64" },
+							},
+				    		},
+					    lualine_y = {'progress'},
+					    lualine_z = {'location'}
+				},    
+				options = {
+					refresh = {
+						statusline = 1000,
+						tabline = 1000,
+						winbar = 1000,
+					},
+					theme = 'auto',
 				},
-			theme = "gruvbox-material",
-		},
+			},
 		require("lualine").setup(opts)
 		end,
 	},
 	{	
 		'akinsho/bufferline.nvim', 
 		version = "*", 
-		event = "BufEnter",
+		event = "VeryLazy",
 		dependencies = {
 			'nvim-tree/nvim-web-devicons'
 		},
@@ -108,5 +118,9 @@ return {
 		"echasnovski/mini.nvim",
 		event = "VeryLazy",
 		version = false,
+	},
+	{
+		"lewis6991/gitsigns.nvim",
+		event = "VeryLazy",
 	},
 }
