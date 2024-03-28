@@ -70,6 +70,7 @@ return {
 		"nvim-telescope/telescope.nvim",
 		priority = 25,
 		enabled = true,
+		-- enabled = false,
 		tag = "0.1.5",
 		-- event = {
 		-- 	"VeryLazy",
@@ -87,7 +88,7 @@ return {
 	{
 		'akinsho/toggleterm.nvim',
 		-- version = "*",
-		event = "VeryLazy";
+		event = "VeryLazy",
 		-- keys = "<leader>t",
 		opts = {
 			auto_scroll = true,
@@ -120,26 +121,26 @@ return {
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 		},
-		config = function()	
-			-- set termguicolors to enable highlight groups
-			vim.opt.termguicolors = true
-			tree_opts = {
-				disable_netrw = true,
-				hijack_netrw = false,
-				theme = auto,
-				sort = {
-					sorter = "name",
-					folders_first = true,
-					files_first = false,
-				},
-				view = {
-				    width = 60,
-				},
-				number = true,
-				relativenumber = true,
-				sync_root_with_cwd = true,
+		tree_opts = {
+			disable_netrw = true,
+			hijack_netrw = false,
+			theme = auto,
+			sort = {
+				sorter = "name",
+				folders_first = true,
+				files_first = false,
 			},
+			view = {
+			    width = 60,
+			},
+			number = true,
+			relativenumber = true,
+			sync_root_with_cwd = true,
+		},
+		config = function()	
+		-- set termguicolors to enable highlight groups
+			vim.opt.termguicolors = true
 			require("nvim-tree").setup(tree_opts)
 		end,
-	}
+	},
 }	

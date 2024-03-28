@@ -3,14 +3,15 @@ return {
 		"catppuccin/nvim", 
 		name = "catppuccin",
 		lazy = false,
+		-- enabled = false,
 		enabled = true,
 		priority = 1000,
 		config = function()
-			opts = {
-				flavour = "frappe", -- latte, frappe, macchiato, mocha
+			cat_opts = {
+				flavour = "mocha", -- latte, frappe, macchiato, mocha
 				background = { -- :h background
 					light = "latte",
-					dark = "macchiato",
+					dark = "mocha",
 				},
 				transparent_background = false, -- disables setting the background color.
 				show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
@@ -53,8 +54,8 @@ return {
 					-- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
 				},
 			}
-			require("catppuccin").setup(opts)
-		vim.cmd([[colorscheme catppuccin]])
+			require("catppuccin").setup(cat_opts)
+			vim.cmd([[colorscheme catppuccin]])
 		end,
 	},
 	{
@@ -78,7 +79,7 @@ return {
 	},
 	{
 		"levouh/tint.nvim",
-		enabed = false,
+		enabled = false,
 		name = "tint",
 		lazy = false,
 		priority = 900,
@@ -88,6 +89,17 @@ return {
 				saturation = 1.0,
 			},
 			require("tint").setup(tint_opts)
+		end,
+	},
+	{
+		"kepano/flexoki-neovim",
+		enabled = false,
+		lazy = false,
+		name = 'flexoki',
+		priority = 1000,
+		config = function()
+			require("flexoki").setup()
+			vim.cmd('colorscheme flexoki-dark')
 		end,
 	},
 }
