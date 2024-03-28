@@ -2,21 +2,27 @@ return
 {
 	{
 		"nvim-treesitter/nvim-treesitter",
+		event = "VeryLazy",
 		build = ":TSUpdate",
 		config = function()
-			require('nvim-treesitter.configs').setup {
+			require('nvim-treesitter.configs').setup({
 				-- A list of parser names, or "all" (the five listed parsers should always be installed)
 				ensure_installed = {
 					"c", 
-					"cpp",
 					"lua", 
 					"vim", 
 					"vimdoc", 
 					"query",
+					"cpp",
 					"typescript",
 					"javascript",
 					"java",
-					-- "help",
+					"dockerfile",
+					"toml",
+					"ninja",
+					"cmake",
+					-- "printf",
+					"rust",
 				},
 
 				-- Install parsers synchronously (only applied to `ensure_installed`)
@@ -57,7 +63,8 @@ return
 					-- Instead of true it can also be a list of languages
 					additional_vim_regex_highlighting = false,
 				},
-			}
+			})
+			-- require("nvim-treesitter").setup()
 		end,
 	},
 	{
@@ -70,15 +77,39 @@ return
 		},
 	},
 	{
-		"ms-jpq/coq_nvim",
-		enabled = false,
-		event = "InsertEnter",
-		-- event = "VeryLazy",
-	},
-	{
-		'VonHeikemen/lsp-zero.nvim', 
+		'VonHeikemen/lsp-zero.nvim',
+		dependencies = {
+			'neovim/nvim-lspconfig',
+			'williamboman/mason.nvim',
+			'williamboman/mason-lspconfig.nvim',
+			'neovim/nvim-lspconfig',
+			-- 'L3MON4D3/LuaSnip',
+			-- 'rafamadriz/friendly-snippets',
+		},
 		branch = 'v3.x',
-		event = "VeryLazy",
+		-- event = "VeryLazy",
+		-- event = "InsertEnter",
+		-- event = "BufEnter",
+		config = function()
+			local lsp_zero = require("lsp-zero")
+			-- require('lsp-zero')
+			require('lspconfig').intelephense.setup({})
+			lsp_zero.on_attach(function(client, bufnr)
+				-- see :help lsp-zero-keybindings
+				-- to learn the available actions
+				lsp_zero.default_keymaps({buffer = bufnr})
+			end)
+			lsp_zero.setup({})
+			-- to learn how to use mason.nvim with lsp-zero
+			-- read this: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guides/integrate-with-mason-nvim.md
+			require('mason').setup({})
+			require('mason-lspconfig').setup({
+				handlers = {
+					lsp_zero.default_setup,
+				}
+			})
+		end,
+
 	},
 	{'williamboman/mason.nvim'},
 	{'williamboman/mason-lspconfig.nvim'},
@@ -86,16 +117,37 @@ return
 	{'L3MON4D3/LuaSnip'},
 	{'rafamadriz/friendly-snippets'},
 	{
+		'tzachar/cmp-fuzzy-buffer',
+		dependencies = {
+			'telescope-fzf-native.nvim',
+			'tzachar/fuzzy.nvim',
+			'hrsh7th/nvim-cmp',
+		},
+	},
+	{
+		'tzachar/cmp-fuzzy-path',
+		dependencies = {
+			'telescope-fzf-native.nvim',
+			'tzachar/fuzzy.nvim',
+			'hrsh7th/nvim-cmp',
+		},
+	},
+	{
 		'hrsh7th/nvim-cmp',
+		-- event = "InsertEnter",
 		event = "InsertEnter",
 		dependencies = {
 			'hrsh7th/cmp-buffer',
-			'hrsh7th/cmp-path',
 			'hrsh7th/cmp-nvim-lsp',
-			'saadparwaiz1/cmp_luasnip',
+			'hrsh7th/cmp-nvim-lua',
 			'hrsh7th/cmp-path',
-			'zbirenbaum/copilot-cmp',
 			'hrsh7th/cmp-cmdline',
+			-- 'telescope-fzf-native.nvim',
+			-- 'tzachar/fuzzy.nvim',
+			-- 'tzachar/cmp-fuzzy-buffer',
+			-- 'tzachar/cmp-fuzzy-path',
+			'saadparwaiz1/cmp_luasnip',
+			'zbirenbaum/copilot-cmp',
 			'VonHeikemen/lsp-zero.nvim',
 		},
 		config = function()
@@ -105,10 +157,13 @@ return
 				sources = {
 					{name = "nvim_lsp"},
 					{name = "buffer"},
+					{name = "fuzzy_buffer"},
 					{name = "luasnip"},
+					{name = "nvim-lua"},
 					{name = "path"},
-					{name = "copilot.lua"},
+					{name = "fuzzy_path"},
 					{name = "cmdline"},
+					{name = "copilot.lua"},
 				},
 				formatting = cmp_format,
 				mapping = cmp.mapping.preset.insert({

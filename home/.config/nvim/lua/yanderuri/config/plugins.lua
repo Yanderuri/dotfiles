@@ -1,11 +1,11 @@
 -- local all_possible_events = {
--- 	"BufEnter",   -- entering a buffer, ie file opening
--- 	"VimEnter",   -- launching nvim
--- 	"InsertEnter", -- entering inetert mode
--- 	"InsertLeave",
--- 	"VeryLazy",     -- loading shit at the very last minute
--- 	"BufWinEnter",
--- }
+	-- 	"BufEnter",   -- entering a buffer, ie file opening
+	-- 	"VimEnter",   -- launching nvim
+	-- 	"InsertEnter", -- entering inetert mode
+	-- 	"InsertLeave",
+	-- 	"VeryLazy",     -- loading shit at the very last minute
+	-- 	"BufWinEnter",
+	-- }
 
 return {
 	{
@@ -15,24 +15,21 @@ return {
 		dependencies = {
 			'AndreM222/copilot-lualine'
 		},
-		config = function()
-			copilot_opts = {
-				suggestion = {
-					enabled = true,
-					auto_trigger = false,
-					debounce = 75,
-					keymap = {
-					      accept = "<M-l>",
-					      accept_word = false,
-					      accept_line = false,
-					      next = "<M-]>",
-					      prev = "<M-[>",
-					      dismiss = "<C-]>",
-					},
+		opts = {
+			suggestion = {
+				enabled = true,
+				auto_trigger = false,
+				debounce = 75,
+				keymap = {
+					accept = "<M-l>",
+					accept_word = false,
+					accept_line = false,
+					next = "<M-]>",
+					prev = "<M-[>",
+					dismiss = "<C-]>",
 				},
 			},
-			require("copilot").setup(copilot_opts)
-		end,
+		},
 	},
 	{
 		"folke/which-key.nvim",
@@ -46,9 +43,9 @@ return {
 			-- or leave it empty to use the default settings
 			-- refer to the configuration section below
 			icons = {
-			    breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
-			    separator = "⇏", -- symbol used between a key and it's label
-			    group = "+", -- symbol prepended to a group
+				breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
+				separator = "⇏", -- symbol used between a key and it's label
+				group = "+", -- symbol prepended to a group
 			},
 		}
 	},
@@ -66,24 +63,38 @@ return {
 			{"<Leader>A", "<Cmd>MultipleCursorsAddBySearchV<CR>", mode = {"n", "x"}},
 		},
 	},
+	{ 
+		'nvim-telescope/telescope-fzf-native.nvim', 
+		build = 'make' 
+	},
 	{
 		"nvim-telescope/telescope.nvim",
 		priority = 25,
 		enabled = true,
 		-- enabled = false,
 		tag = "0.1.5",
-		-- event = {
-		-- 	"VeryLazy",
-		-- },	
+		-- event = "VeryLazy",
 		keys = "<leader>f",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"BurntSushi/ripgrep",
 			"nvim-telescope/telescope-fzf-native.nvim",
 		},
-		opts = {
-
-		},
+		config = function()
+			opts = {
+				extensions = {
+					fzf = {
+						fuzzy = true,                    -- false will only do exact matching
+						override_generic_sorter = true,  -- override the generic sorter
+						override_file_sorter = true,     -- override the file sorter
+						case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+						-- the default case_mode is "smart_case"
+					},
+				}
+			}
+			require('telescope').setup(opts)
+			require('telescope').load_extension('fzf')
+		end,
 	},
 	{
 		'akinsho/toggleterm.nvim',
@@ -98,18 +109,18 @@ return {
 			insert_mappings = false,
 			autochdir = false, -- when neovim changes it current directory the terminal will change it's own when next it's opened
 			float_opts = {
-			    -- The border key is *almost* the same as 'nvim_open_win'
-			    -- see :h nvim_open_win for details on borders however
-			    -- the 'curved' border is a custom border type
-			    -- not natively supported but implemented in this plugin.
-			    border = 'curved',
-			    --- width = <value>,
-			    --- height = <value>,
-			    --- row = <value>,
-			    --- col = <value>,
-			    winblend = 1,
-			    --- zindex = <value>,
-			    title_pos = 'center',
+				-- The border key is *almost* the same as 'nvim_open_win'
+				-- see :h nvim_open_win for details on borders however
+				-- the 'curved' border is a custom border type
+				-- not natively supported but implemented in this plugin.
+				border = 'curved',
+				--- width = <value>,
+				--- height = <value>,
+				--- row = <value>,
+				--- col = <value>,
+				winblend = 1,
+				--- zindex = <value>,
+				title_pos = 'center',
 			},
 		},
 	},
@@ -117,11 +128,12 @@ return {
 		"nvim-tree/nvim-tree.lua",
 		version = "*",
 		priority = 25,
-		event = "BufEnter",
+		-- event = "BufEnter",
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 		},
-		tree_opts = {
+		opts = {
+			hijack_cursor = true,
 			disable_netrw = true,
 			hijack_netrw = false,
 			theme = auto,
@@ -131,14 +143,20 @@ return {
 				files_first = false,
 			},
 			view = {
-			    width = 60,
+				width = {
+					min = 40,
+					max = 120,
+				},
+				preserve_window_proportions = true,
+				number = true,
+				relativenumber = true,
 			},
-			number = true,
-			relativenumber = true,
 			sync_root_with_cwd = true,
+			respect_buf_cwd = true,
+			reload_on_bufenter = true,
 		},
 		config = function()	
-		-- set termguicolors to enable highlight groups
+			-- set termguicolors to enable highlight groups
 			vim.opt.termguicolors = true
 			require("nvim-tree").setup(tree_opts)
 		end,

@@ -2,7 +2,7 @@ return {
 	{
 		"catppuccin/nvim", 
 		name = "catppuccin",
-		lazy = false,
+		lazy = true, 
 		-- enabled = false,
 		enabled = true,
 		priority = 1000,
@@ -55,12 +55,12 @@ return {
 				},
 			}
 			require("catppuccin").setup(cat_opts)
-			vim.cmd([[colorscheme catppuccin]])
+			-- vim.cmd([[colorscheme catppuccin]])
 		end,
 	},
 	{
 		"rebelot/kanagawa.nvim",
-		lazy = false,
+		lazy = true, 
 		enabled = false,
 		priority = 1000,
 		config = function()
@@ -69,7 +69,7 @@ return {
 				dimInactive = false,
 				background = {               	-- map the value of 'background' option to a theme
 					dark = "wave",           -- try "dragon" !
-					light = "lotus"
+					light = "dragon",
 				},
 			},
 			require("kanagawa").setup(opts)
@@ -81,7 +81,7 @@ return {
 		"levouh/tint.nvim",
 		enabled = false,
 		name = "tint",
-		lazy = false,
+		lazy = true,
 		priority = 900,
 		config = function()
 			tint_opts = {
@@ -94,7 +94,7 @@ return {
 	{
 		"kepano/flexoki-neovim",
 		enabled = false,
-		lazy = false,
+		lazy = true,
 		name = 'flexoki',
 		priority = 1000,
 		config = function()
