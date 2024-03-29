@@ -12,7 +12,8 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup("yanderuri.config",
+require("lazy").setup(
+	"yanderuri.config",
 {
 	defaults = {
 		lazy = false, -- should plugins be lazy-loaded?
