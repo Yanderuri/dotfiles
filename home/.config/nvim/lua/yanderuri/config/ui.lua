@@ -1,8 +1,8 @@
-return 
+return
 {
 	{
 		"folke/trouble.nvim",
-		dependencies = { 
+		dependencies = {
 			"nvim-tree/nvim-web-devicons"
 		},
 		opts = {
@@ -11,14 +11,12 @@ return
 			-- refer to the configuration section below
 		},
 	},
-	{ 
+	{
 		"lukas-reineke/indent-blankline.nvim",
 		enabled = true,
 		event = "VeryLazy",
-		main = "ibl", 
+		main = "ibl",
 		config = function()
-			vim.cmd('set number')
-			vim.cmd('set relativenumber')
 			local highlight = {
 				"RainbowRed",
 				"RainbowYellow",
@@ -64,31 +62,24 @@ return
 		'nvim-lualine/lualine.nvim',
 		-- priority = 1000,
 		event = "VeryLazy",
-		dependencies = { 
+		dependencies = {
 			'nvim-tree/nvim-web-devicons',
 			-- 'AndreM222/copilot-lualine'
 		},
-		config = function()
-			lua_line_opts = {
-				extensions = {
-					"nvim-tree",
-					"toggleterm",
-					"trouble",
-				},
-				sections = {
-					lualine_a = {'mode'},
-					lualine_b = {'branch', 'diff', 'diagnostics'},
-					lualine_c = {'filename'},
-					lualine_x = {'encoding', 'fileformat','filetype',
-					{
-						require("lazy.status").updates,
-						cond = require("lazy.status").has_updates,
-						color = { fg = "#ff9e64" },
-					},
-				},
+		opts = {
+			extensions = {
+				"nvim-tree",
+				"toggleterm",
+				"trouble",
+			},
+			sections = {
+				lualine_a = {'mode'},
+				lualine_b = {'branch', 'diff', 'diagnostics'},
+				lualine_c = {'filename'},
+				lualine_x = {'encoding', 'fileformat','filetype'},
 				lualine_y = {'progress'},
 				lualine_z = {'location'}
-			},    
+			},
 			options = {
 				refresh = {
 					statusline = 1000,
@@ -98,38 +89,34 @@ return
 				theme = 'auto',
 			},
 		},
-		require("lualine").setup(lua_line_opts)
-	end,
 	},
-{	
-	'akinsho/bufferline.nvim', 
-	version = "*", 
-	event = "VeryLazy",
-	dependencies = {
-		'nvim-tree/nvim-web-devicons'
+	{
+		'akinsho/bufferline.nvim',
+		version = "*",
+		event = "VeryLazy",
+		dependencies = {
+			'nvim-tree/nvim-web-devicons'
+		},
+		config = function()
+			vim.opt.termguicolors = true
+			require("bufferline").setup()
+		end,
 	},
-	config = function()
-		vim.opt.termguicolors = true
-		vim.cmd([[set wrap]])
-		vim.cmd([[set linebreak]])
-		require("bufferline").setup()
-	end,
-},
-{
-	"echasnovski/mini.nvim",
-	event = "VeryLazy",
-	version = false,
-},
-{
-	"lewis6991/gitsigns.nvim",
-	event = "VeryLazy",
-},
+	{
+		"echasnovski/mini.nvim",
+		event = "VeryLazy",
+		version = false,
+	},
+	{
+		"lewis6991/gitsigns.nvim",
+		event = "VeryLazy",
+	},
 {
 	"rcarriga/nvim-notify",
 	event = "VeryLazy",
 	config = function()
 		vim.opt.termguicolors = true
-		notify_opts = {
+		local notify_opts = {
 			background_colour = "#000000",
 		}
 		require("notify").setup(notify_opts)

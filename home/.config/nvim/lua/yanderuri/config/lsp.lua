@@ -1,17 +1,22 @@
-return 
+return
 {
 	{
 		"nvim-treesitter/nvim-treesitter",
+		dependencies = {
+			-- "nvim-treesitter/nvim-treesitter-textobjects",
+			-- "nvim-treesitter/nvim-treesitter-refactor",
+			"nvim-treesitter/nvim-treesitter-context",
+		},
 		event = "VeryLazy",
 		build = ":TSUpdate",
 		config = function()
 			require('nvim-treesitter.configs').setup({
 				-- A list of parser names, or "all" (the five listed parsers should always be installed)
 				ensure_installed = {
-					"c", 
-					"lua", 
-					"vim", 
-					"vimdoc", 
+					"c",
+					"lua",
+					"vim",
+					"vimdoc",
 					"query",
 					"cpp",
 					"typescript",
@@ -23,6 +28,7 @@ return
 					"cmake",
 					-- "printf",
 					"rust",
+					"markdown_inline",
 				},
 
 				-- Install parsers synchronously (only applied to `ensure_installed`)
@@ -33,7 +39,7 @@ return
 				auto_install = true,
 
 				-- List of parsers to ignore installing (or "all")
-				ignore_install = { 
+				ignore_install = {
 					-- "javascript"
 				},
 
@@ -64,6 +70,9 @@ return
 					additional_vim_regex_highlighting = false,
 				},
 			})
+			require('treesitter-context').setup({
+				enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+			})
 			-- require("nvim-treesitter").setup()
 		end,
 	},
@@ -80,16 +89,13 @@ return
 		'VonHeikemen/lsp-zero.nvim',
 		dependencies = {
 			'neovim/nvim-lspconfig',
-			'williamboman/mason.nvim',
+			-- 'williamboman/mason.nvim',
 			'williamboman/mason-lspconfig.nvim',
-			'neovim/nvim-lspconfig',
+			-- 'neovim/nvim-lspconfig',
 			-- 'L3MON4D3/LuaSnip',
 			-- 'rafamadriz/friendly-snippets',
 		},
 		branch = 'v3.x',
-		-- event = "VeryLazy",
-		-- event = "InsertEnter",
-		-- event = "BufEnter",
 		config = function()
 			local lsp_zero = require("lsp-zero")
 			-- require('lsp-zero')
@@ -102,34 +108,54 @@ return
 			lsp_zero.setup({})
 			-- to learn how to use mason.nvim with lsp-zero
 			-- read this: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guides/integrate-with-mason-nvim.md
-			require('mason').setup({})
+			--[[ 	require('mason').setup({})
 			require('mason-lspconfig').setup({
 				handlers = {
 					lsp_zero.default_setup,
 				}
-			})
+			}) ]]
 		end,
 
 	},
-	{'williamboman/mason.nvim'},
-	{'williamboman/mason-lspconfig.nvim'},
-	{'neovim/nvim-lspconfig'},
-	{'L3MON4D3/LuaSnip'},
-	{'rafamadriz/friendly-snippets'},
 	{
-		'tzachar/cmp-fuzzy-buffer',
+		'williamboman/mason-lspconfig.nvim',
 		dependencies = {
-			'telescope-fzf-native.nvim',
-			'tzachar/fuzzy.nvim',
-			'hrsh7th/nvim-cmp',
+			"neovim/nvim-lspconfig",
+			"williamboman/mason.nvim",
+			"VonHeikemen/lsp-zero.nvim",
+		},
+		config = function()
+			local lsp_zero = require("lsp-zero")
+			require("mason").setup()
+			require("mason-lspconfig").setup(
+			{
+				ensure_installed = {
+					"lua_ls", "tsserver", "rust_analyzer", "clangd",
+					"taplo", "typos_lsp", "pylsp",
+				},
+				handlers = {
+					lsp_zero.default_setup,
+				},
+			}
+			)
+		end,
+	},
+	{"L3MON4D3/LuaSnip"},
+	{"rafamadriz/friendly-snippets"},
+	{
+		"tzachar/cmp-fuzzy-buffer",
+		dependencies = {
+			"telescope-fzf-native.nvim",
+			"tzachar/fuzzy.nvim",
+			"hrsh7th/nvim-cmp",
 		},
 	},
 	{
-		'tzachar/cmp-fuzzy-path',
+		"tzachar/cmp-fuzzy-path",
 		dependencies = {
-			'telescope-fzf-native.nvim',
-			'tzachar/fuzzy.nvim',
-			'hrsh7th/nvim-cmp',
+			"telescope-fzf-native.nvim",
+			"tzachar/fuzzy.nvim",
+			"hrsh7th/nvim-cmp",
 		},
 	},
 	{
@@ -137,33 +163,40 @@ return
 		-- event = "InsertEnter",
 		event = "InsertEnter",
 		dependencies = {
+			-- 'telescope-fzf-native.nvim',
+			-- 'tzachar/fuzzy.nvim',
+			'tzachar/cmp-fuzzy-buffer',
+			'tzachar/cmp-fuzzy-path',
 			'hrsh7th/cmp-buffer',
 			'hrsh7th/cmp-nvim-lsp',
 			'hrsh7th/cmp-nvim-lua',
 			'hrsh7th/cmp-path',
 			'hrsh7th/cmp-cmdline',
-			-- 'telescope-fzf-native.nvim',
-			-- 'tzachar/fuzzy.nvim',
-			-- 'tzachar/cmp-fuzzy-buffer',
-			-- 'tzachar/cmp-fuzzy-path',
 			'saadparwaiz1/cmp_luasnip',
+			'zbirenbaum/copilot.lua',
 			'zbirenbaum/copilot-cmp',
 			'VonHeikemen/lsp-zero.nvim',
+			"L3MON4D3/LuaSnip",
+			"rafamadriz/friendly-snippets"
 		},
 		config = function()
 			local cmp = require("cmp")
+			require("copilot_cmp").setup({
+				suggestion = { enabled = false },
+				panel = { enabled = false }
+			})
 			local cmp_action = require("lsp-zero").cmp_action()
 			cmp.setup({
 				sources = {
-					{name = "nvim_lsp"},
-					{name = "buffer"},
-					{name = "fuzzy_buffer"},
-					{name = "luasnip"},
-					{name = "nvim-lua"},
-					{name = "path"},
-					{name = "fuzzy_path"},
-					{name = "cmdline"},
-					{name = "copilot.lua"},
+					-- {name = "path"},
+					-- {name = "buffer"},
+					{name = "nvim_lsp",  max_item_count = 5,},
+					{name = "copilot", max_item_count = 5},
+					{name = "nvim-lua",  max_item_count = 5,},
+					{name = "luasnip",max_item_count = 5,},
+					{name = "fuzzy_buffer",  max_item_count = 5,},
+					{name = "fuzzy_path", max_item_count = 5,},
+					-- {name = "cmdline", max_item_count = 5},
 				},
 				formatting = cmp_format,
 				mapping = cmp.mapping.preset.insert({
