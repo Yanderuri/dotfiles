@@ -89,43 +89,43 @@ return
 		'VonHeikemen/lsp-zero.nvim',
 		dependencies = {
 			'neovim/nvim-lspconfig',
-			-- 'williamboman/mason.nvim',
-			'williamboman/mason-lspconfig.nvim',
-			-- 'neovim/nvim-lspconfig',
-			-- 'L3MON4D3/LuaSnip',
-			-- 'rafamadriz/friendly-snippets',
+			-- 'williamoman/mason-lspconfig.nvim',
 		},
 		branch = 'v3.x',
+		--[[ 		
 		config = function()
 			local lsp_zero = require("lsp-zero")
-			-- require('lsp-zero')
-			require('lspconfig').intelephense.setup({})
+			lsp_zero.extend_lspconfig()
 			lsp_zero.on_attach(function(client, bufnr)
-				-- see :help lsp-zero-keybindings
-				-- to learn the available actions
 				lsp_zero.default_keymaps({buffer = bufnr})
 			end)
-			lsp_zero.setup({})
-			-- to learn how to use mason.nvim with lsp-zero
-			-- read this: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guides/integrate-with-mason-nvim.md
-			--[[ 	require('mason').setup({})
-			require('mason-lspconfig').setup({
-				handlers = {
-					lsp_zero.default_setup,
-				}
-			}) ]]
-		end,
+			lsp_zero.format_on_save({
+				format_opts = {
+					async = false,
+					timeoutms = 10000,
+				},
+				servers = {
+					['tsserver'] = {'javascript', 'typescript'},
+					['rust_analyzer'] = {'rust'},
+					['clangd'] = {'c', 'cpp'},
+					['taplo'] = {'toml'},
+					['pylsp'] = {'python'},
+					['lua_ls]'] = {'lua'},
+				},
+			})
+		end, ]]
 
 	},
 	{
 		'williamboman/mason-lspconfig.nvim',
 		dependencies = {
-			"neovim/nvim-lspconfig",
+			-- "neovim/nvim-lspconfig",
 			"williamboman/mason.nvim",
 			"VonHeikemen/lsp-zero.nvim",
 		},
+		--[[ 		
 		config = function()
-			local lsp_zero = require("lsp-zero")
+			-- local lsp_zero = require("lsp-zero")
 			require("mason").setup()
 			require("mason-lspconfig").setup(
 			{
@@ -134,12 +134,16 @@ return
 					"taplo", "typos_lsp", "pylsp",
 				},
 				handlers = {
-					lsp_zero.default_setup,
+					-- lsp_zero.default_setup,
+					function(server_name)
+						require('lspconfig')[server_name].setup({})
+					end,
 				},
 			}
 			)
-		end,
+		end, ]]
 	},
+
 	{"L3MON4D3/LuaSnip"},
 	{"rafamadriz/friendly-snippets"},
 	{
