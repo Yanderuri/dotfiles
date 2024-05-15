@@ -7,17 +7,17 @@ return {
 		enabled = true,
 		priority = 1000,
 		config = function()
-			cat_opts = {
-				flavour = "mocha", -- latte, frappe, macchiato, mocha
+			local cat_opts = {
+				flavour = "frappe", -- latte, frappe, macchiato, mocha
 				background = { -- :h background
 					light = "latte",
-					dark = "mocha",
+					dark = "frappe",
 				},
 				transparent_background = false, -- disables setting the background color.
 				show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
 				term_colors = true, -- sets terminal colors (e.g. `g:terminal_color_0`)
 				dim_inactive = {
-					enabled = false, -- dims the background color of inactive window
+					enabled = true, -- dims the background color of inactive window
 					shade = "dark",
 					percentage = 0.15, -- percentage of the shade to apply to the inactive window
 				},
@@ -38,7 +38,24 @@ return {
 					types = {},
 					operators = {},
 				},
-				color_overrides = {},
+				-- color_overrides = {},
+				color_overrides = {
+					frappe = {
+						text = "#F4CDE9",
+						subtext1 = "#DEBAD4",
+						subtext0 = "#C8A6BE",
+						overlay2 = "#B293A8",
+						overlay1 = "#9C7F92",
+						overlay0 = "#866C7D",
+						surface2 = "#705867",
+						surface1 = "#5A4551",
+						surface0 = "#44313B",
+
+						base = "#352939",
+						mantle = "#211924",
+						crust = "#1a1016",
+					},
+				},
 				custom_highlights = {},
 				integrations = {
 					cmp = true,

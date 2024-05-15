@@ -3,8 +3,6 @@ return
 	{
 		"nvim-treesitter/nvim-treesitter",
 		dependencies = {
-			-- "nvim-treesitter/nvim-treesitter-textobjects",
-			-- "nvim-treesitter/nvim-treesitter-refactor",
 			"nvim-treesitter/nvim-treesitter-context",
 		},
 		event = "VeryLazy",
@@ -78,72 +76,23 @@ return
 	},
 	{
 		'numToStr/Comment.nvim',
-		-- event = "InsertEnter",
 		event = "VeryLazy",
-		-- keys = "g",
 		opts = {
-			-- add any options here
 		},
 	},
 	{
 		'VonHeikemen/lsp-zero.nvim',
-		dependencies = {
-			'neovim/nvim-lspconfig',
-			-- 'williamoman/mason-lspconfig.nvim',
-		},
 		branch = 'v3.x',
-		--[[ 		
-		config = function()
-			local lsp_zero = require("lsp-zero")
-			lsp_zero.extend_lspconfig()
-			lsp_zero.on_attach(function(client, bufnr)
-				lsp_zero.default_keymaps({buffer = bufnr})
-			end)
-			lsp_zero.format_on_save({
-				format_opts = {
-					async = false,
-					timeoutms = 10000,
-				},
-				servers = {
-					['tsserver'] = {'javascript', 'typescript'},
-					['rust_analyzer'] = {'rust'},
-					['clangd'] = {'c', 'cpp'},
-					['taplo'] = {'toml'},
-					['pylsp'] = {'python'},
-					['lua_ls]'] = {'lua'},
-				},
-			})
-		end, ]]
 
 	},
 	{
 		'williamboman/mason-lspconfig.nvim',
 		dependencies = {
-			-- "neovim/nvim-lspconfig",
+			"neovim/nvim-lspconfig",
 			"williamboman/mason.nvim",
 			"VonHeikemen/lsp-zero.nvim",
 		},
-		--[[ 		
-		config = function()
-			-- local lsp_zero = require("lsp-zero")
-			require("mason").setup()
-			require("mason-lspconfig").setup(
-			{
-				ensure_installed = {
-					"lua_ls", "tsserver", "rust_analyzer", "clangd",
-					"taplo", "typos_lsp", "pylsp",
-				},
-				handlers = {
-					-- lsp_zero.default_setup,
-					function(server_name)
-						require('lspconfig')[server_name].setup({})
-					end,
-				},
-			}
-			)
-		end, ]]
 	},
-
 	{"L3MON4D3/LuaSnip"},
 	{"rafamadriz/friendly-snippets"},
 	{
@@ -151,7 +100,7 @@ return
 		dependencies = {
 			"telescope-fzf-native.nvim",
 			"tzachar/fuzzy.nvim",
-			"hrsh7th/nvim-cmp",
+			-- "hrsh7th/nvim-cmp",
 		},
 	},
 	{
@@ -159,13 +108,14 @@ return
 		dependencies = {
 			"telescope-fzf-native.nvim",
 			"tzachar/fuzzy.nvim",
-			"hrsh7th/nvim-cmp",
+			-- "hrsh7th/nvim-cmp",
 		},
 	},
 	{
 		'hrsh7th/nvim-cmp',
 		-- event = "InsertEnter",
-		event = "InsertEnter",
+		-- event = "InsertEnter",
+		event = "VeryLazy",
 		dependencies = {
 			-- 'telescope-fzf-native.nvim',
 			-- 'tzachar/fuzzy.nvim',
@@ -192,14 +142,12 @@ return
 			local cmp_action = require("lsp-zero").cmp_action()
 			cmp.setup({
 				sources = {
-					-- {name = "path"},
-					-- {name = "buffer"},
-					{name = "nvim_lsp",  max_item_count = 5,},
-					{name = "copilot", max_item_count = 5},
+					{name = "nvim_lsp",  max_item_count = 10,},
 					{name = "nvim-lua",  max_item_count = 5,},
-					{name = "luasnip",max_item_count = 5,},
+					{name = "luasnip",max_item_count = 10,},
 					{name = "fuzzy_buffer",  max_item_count = 5,},
 					{name = "fuzzy_path", max_item_count = 5,},
+					{name = "copilot", max_item_count = 5},
 					-- {name = "cmdline", max_item_count = 5},
 				},
 				formatting = cmp_format,
