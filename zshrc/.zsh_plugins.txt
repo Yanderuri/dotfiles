@@ -1,0 +1,5 @@
+skywind3000/z.lua
+zdharma-continuum/fast-syntax-highlighting kind:defer
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-completions
+unixorn/fzf-zsh-plugin
