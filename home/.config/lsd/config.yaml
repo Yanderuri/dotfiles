@@ -1,7 +1,0 @@
-icons:
-  when: auto
-  theme: fancy
-layout: tree
-recursion:
-  enabled: false
-  depth: 1 

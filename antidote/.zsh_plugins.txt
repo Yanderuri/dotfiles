@@ -1,0 +1,4 @@
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-syntax-highlighting
+romkatv/powerlevel10k
+skywind3000/z.lua

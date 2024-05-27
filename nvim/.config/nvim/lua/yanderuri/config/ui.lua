@@ -84,16 +84,20 @@ return
 				vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
 				vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
 			end)
-			require("ibl").setup { indent = { highlight = highlight } }
+			require("ibl").setup(
+			{
+				indent = {
+					highlight = highlight,
+				},
+			})
 		end,
 	},
 	{
 		'nvim-lualine/lualine.nvim',
 		-- priority = 1000,
-		event = "VeryLazy",
+		-- event = "VeryLazy",
 		dependencies = {
 			'nvim-tree/nvim-web-devicons',
-			-- 'AndreM222/copilot-lualine'
 		},
 		opts = {
 			extensions = {
@@ -107,7 +111,7 @@ return
 				lualine_c = {'filename'},
 				lualine_x = {'encoding', 'fileformat','filetype'},
 				lualine_y = {'progress'},
-				lualine_z = {'location'}
+				lualine_z = {'location'},
 			},
 			options = {
 				refresh = {

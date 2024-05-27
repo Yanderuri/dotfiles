@@ -127,18 +127,16 @@ return
 			'hrsh7th/cmp-path',
 			'hrsh7th/cmp-cmdline',
 			'saadparwaiz1/cmp_luasnip',
-			'zbirenbaum/copilot.lua',
-			'zbirenbaum/copilot-cmp',
 			'VonHeikemen/lsp-zero.nvim',
 			"L3MON4D3/LuaSnip",
 			"rafamadriz/friendly-snippets"
 		},
 		config = function()
 			local cmp = require("cmp")
-			require("copilot_cmp").setup({
-				suggestion = { enabled = false },
-				panel = { enabled = false }
-			})
+			-- require("copilot_cmp").setup({
+			-- 	suggestion = { enabled = false },
+			-- 	panel = { enabled = false }
+			-- })
 			local cmp_action = require("lsp-zero").cmp_action()
 			cmp.setup({
 				sources = {
@@ -147,7 +145,7 @@ return
 					{name = "luasnip",max_item_count = 10,},
 					{name = "fuzzy_buffer",  max_item_count = 5,},
 					{name = "fuzzy_path", max_item_count = 5,},
-					{name = "copilot", max_item_count = 5},
+					-- {name = "copilot", max_item_count = 5},
 					-- {name = "cmdline", max_item_count = 5},
 				},
 				formatting = cmp_format,
