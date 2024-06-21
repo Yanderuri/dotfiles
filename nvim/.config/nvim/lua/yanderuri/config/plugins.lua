@@ -8,48 +8,6 @@
 	-- }
 
 return {
-	-- {
-	-- 	"zbirenbaum/copilot.lua",
-	-- 	cmd = "Copilot",
-	-- 	-- event = "InsertEnter",
-	-- 	event = "VeryLazy",
-	-- 	dependencies = {
-	-- 		'AndreM222/copilot-lualine'
-	-- 	},
-	-- 	opts = {
-	-- 		suggestion = {
-	-- 			enabled = true,
-	-- 			auto_trigger = false,
-	-- 			debounce = 75,
-	-- 			keymap = {
-	-- 				accept = "<M-l>",
-	-- 				accept_word = false,
-	-- 				accept_line = false,
-	-- 				next = "<M-]>",
-	-- 				prev = "<M-[>",
-	-- 				dismiss = "<C-]>",
-	-- 			},
-	-- 		},
-	-- 	},
-	-- },
-	-- {
-	-- 	"folke/which-key.nvim",
-	-- 	event = "VeryLazy",
-	-- 	init = function()
-	-- 		vim.o.timeout = true
-	-- 		vim.o.timeoutlen = 500
-	-- 	end,
-	-- 	opts = {
-	-- 		-- your configuration comes here
-	-- 		-- or leave it empty to use the default settings
-	-- 		-- refer to the configuration section below
-	-- 		icons = {
-	-- 			breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
-	-- 			separator = "⇏", -- symbol used between a key and it's label
-	-- 			group = "+", -- symbol prepended to a group
-	-- 		},
-	-- 	}
-	-- },
 	{
 		"brenton-leighton/multiple-cursors.nvim",
 		-- enabled = false,
@@ -171,11 +129,4 @@ return {
 			require("nvim-tree").setup(opts)
 		end,
 	},
-	{
-		"tadmccorkle/markdown.nvim",
-		ft = "markdown", -- or 'event = "VeryLazy"'
-		opts = {
-			-- configuration here or empty for defaults
-		},
-	}
 }

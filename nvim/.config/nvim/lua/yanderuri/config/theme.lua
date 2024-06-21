@@ -77,37 +77,38 @@ return {
 	},
 	{
 		"rebelot/kanagawa.nvim",
-		lazy = true, 
+		lazy = true,
 		enabled = false,
 		priority = 1000,
-		config = function()
-			opts = {
-				transparent = true,
-				dimInactive = false,
-				background = {               	-- map the value of 'background' option to a theme
-					dark = "wave",           -- try "dragon" !
-					light = "dragon",
-				},
+		opts = {
+			transparent = true,
+			dimInactive = false,
+			background = {               	-- map the value of 'background' option to a theme
+				dark = "wave",           -- try "dragon" !
+				light = "dragon",
 			},
+		},
+		config = function()
+
 			require("kanagawa").setup(opts)
 			vim.cmd([[set background=dark]])
 			vim.cmd([[colorscheme kanagawa-dragon]])
 		end,
 	},
-	{
-		"levouh/tint.nvim",
-		enabled = false,
-		name = "tint",
-		lazy = true,
-		priority = 900,
-		config = function()
-			tint_opts = {
-				tint = -50,
-				saturation = 1.0,
-			},
-			require("tint").setup(tint_opts)
-		end,
-	},
+	-- {
+	-- 	"levouh/tint.nvim",
+	-- 	enabled = false,
+	-- 	name = "tint",
+	-- 	lazy = true,
+	-- 	priority = 900,
+	-- 	config = function()
+	-- 		tint_opts = {
+	-- 			tint = -50,
+	-- 			saturation = 1.0,
+	-- 		},
+	-- 		require("tint").setup(tint_opts)
+	-- 	end,
+	-- },
 	{
 		"kepano/flexoki-neovim",
 		enabled = false,
