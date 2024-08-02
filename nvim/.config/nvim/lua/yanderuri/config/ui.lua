@@ -2,7 +2,6 @@ return
 {
 	{
 		"folke/noice.nvim",
-		event = "VeryLazy",
 		opts = {
 			-- add any options here
 		},
@@ -17,11 +16,12 @@ return
 		},
 	},
 	{
+		"nvim-treesitter/nvim-treesitter",
+	},
+	{
 		"folke/trouble.nvim",
-		branch = "dev", -- IMPORTANT!
-		dependencies = {
-			-- "folke/noice.nvim",
-		},
+		opts = {}, -- for default options, refer to the configuration section for custom setup.
+		cmd = "Trouble",
 		keys = {
 			{
 				"<leader>xx",
@@ -54,7 +54,6 @@ return
 				desc = "Quickfix List (Trouble)",
 			},
 		},
-		opts = {}, -- for default options, refer to the configuration section for custom setup.
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
@@ -139,6 +138,7 @@ return
 		"echasnovski/mini.nvim",
 		event = "VeryLazy",
 		version = false,
+		enabled = false,
 	},
 	{
 		"lewis6991/gitsigns.nvim",

@@ -1,28 +1,4 @@
--- local all_possible_events = {
-	-- 	"BufEnter",   -- entering a buffer, ie file opening
-	-- 	"VimEnter",   -- launching nvim
-	-- 	"InsertEnter", -- entering inetert mode
-	-- 	"InsertLeave",
-	-- 	"VeryLazy",     -- loading shit at the very last minute
-	-- 	"BufWinEnter",
-	-- }
-
 return {
-	{
-		"brenton-leighton/multiple-cursors.nvim",
-		-- enabled = false,
-		version = "*",  -- Use the latest tagged version
-		opts = {},  -- This causes the plugin setup function to be called
-		keys = {
-			{"<C-Down>", "<Cmd>MultipleCursorsAddDown<CR>", mode = {"n", "i"}},
-			{"<C-j>", "<Cmd>MultipleCursorsAddDown<CR>"},
-			{"<C-Up>", "<Cmd>MultipleCursorsAddUp<CR>", mode = {"n", "i"}},
-			{"<C-k>", "<Cmd>MultipleCursorsAddUp<CR>"},
-			{"<C-LeftMouse>", "<Cmd>MultipleCursorsMouseAddDelete<CR>", mode = {"n", "i"}},
-			{"<Leader>a", "<Cmd>MultipleCursorsAddBySearch<CR>", mode = {"n", "x"}},
-			{"<Leader>A", "<Cmd>MultipleCursorsAddBySearchV<CR>", mode = {"n", "x"}},
-		},
-	},
 	{
 		'nvim-telescope/telescope-fzf-native.nvim',
 		build = 'make',
