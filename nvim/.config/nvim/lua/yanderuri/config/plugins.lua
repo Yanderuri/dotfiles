@@ -34,24 +34,13 @@ return {
 	},
 	{
 		'akinsho/toggleterm.nvim',
-		-- version = "*",
 		event = "VeryLazy",
-		-- keys = "<leader>t",
-		keys =
-		{
-			{
-				"<leader>tt",
-				"<Cmd>ToggleTerm<CR>",
-				desc = "Toggle Terminal",
-			}
-		},
 		opts = {
 			auto_scroll = true,
-			direction = "tab",
-			open_mapping = "<leader>t",
+			direction = "float",
 			start_in_insert = true,
 			insert_mappings = false,
-			autochdir = false, -- when neovim changes it current directory the terminal will change it's own when next it's opened
+			autochdir = true, -- when neovim changes it current directory the terminal will change it's own when next it's opened
 			float_opts = {
 				-- The border key is *almost* the same as 'nvim_open_win'
 				-- see :h nvim_open_win for details on borders however
