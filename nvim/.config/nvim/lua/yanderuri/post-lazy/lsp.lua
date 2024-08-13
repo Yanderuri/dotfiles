@@ -11,7 +11,8 @@ end)
 require('mason').setup({})
 require('mason-lspconfig').setup({
 	-- ensure_installed = {},
-	ensure_installed = {'tsserver', 'rust_analyzer', 'lua_ls', 'clangd', 'golangci_lint_ls' },
+	ensure_installed = {'tsserver', 'rust_analyzer', 'lua_ls', 'clangd',
+	'golangci_lint_ls', 'gopls',},
 	handlers = {
 		function(server_name)
 			require('lspconfig')[server_name].setup({})
@@ -26,6 +27,7 @@ cmp.setup({
 	-- well, sources for nvim_lsp
 	sources = {
 		{name = 'nvim_lsp'},
+		{name = 'luasnip'},
 		{name = 'buffer'},
 	},
 	formatting = cmp_format,
