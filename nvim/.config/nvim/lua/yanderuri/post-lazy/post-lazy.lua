@@ -1,5 +1,5 @@
 -- require("mini.starter").setup()
-vim.cmd([[colorscheme catppuccin]])
+-- vim.cmd([[colorscheme catppuccin]])
 
 
 local wk = require("which-key")
