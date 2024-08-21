@@ -29,7 +29,8 @@ wk.add({
 		-- There's no limit to the depth of nesting
 		mode = { "n", "v" }, -- NORMAL and VISUAL mode
 		{ "<leader>q", "<cmd>q<cr>", desc = "Quit Buffer" }, -- no need to specify mode since it's inherited
-		{ "<leader>w", "<cmd>w<cr>", desc = "Write Buffer" },
+		{ "<leader>ww", "<cmd>w<cr>", desc = "Write Buffer" },
+		{ "<leader>wa", "<cmd>wa<cr>", desc = "Write All" },
 	},
 	{
 		mode = {"n", "v"},
