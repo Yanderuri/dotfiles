@@ -4,12 +4,15 @@ return {
 		build = 'make',
 	},
 	{
+		"nvim-lua/plenary.nvim",
+		lazy = true,
+	},
+	{
 		"nvim-telescope/telescope.nvim",
 		priority = 25,
 		enabled = true,
-		-- enabled = false,
 		tag = "0.1.5",
-		-- event = "VeryLazy",
+		lazy = true,
 		keys = "<leader>f",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -28,8 +31,7 @@ return {
 			}
 		},
 		config = function()
-			require('telescope').setup(opts)
-			require('telescope').load_extension('fzf')
+			-- require('telescope').setup(opts)
 		end,
 	},
 	{

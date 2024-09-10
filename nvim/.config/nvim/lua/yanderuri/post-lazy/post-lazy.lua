@@ -39,3 +39,5 @@ wk.add({
 		{"<leader>nc", "<cmd>NvimTreeCollapse<cr>", desc = "Collapse Tree"},
 	}
 })
+
+require('telescope').load_extension('fzf')
