@@ -76,7 +76,7 @@ return {
 		},
 		{
 			"rebelot/kanagawa.nvim",
-			enabled = true,
+			-- enabled = true,
 			priority = 1000,
 			opts = {
 				transparent = true,
