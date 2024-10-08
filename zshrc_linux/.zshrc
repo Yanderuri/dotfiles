@@ -9,10 +9,8 @@ fi
 alias ls="eza"
 
 # Environment variables
-export WHICH_SHELL="zsh"
 export EDITOR=nvim
-export QSYS_ROOTDIR="/home/vy-faye/.cache/yay/quartus-free/pkg/quartus-free-quartus/opt/intelFPGA/23.1/quartus/sopc_builder/bin"
-
+export CRYPTOGRAPHY_OPENSSL_NO_LEGACY=1
 # Shell enhancements
 eval "$(atuin init zsh)"
 eval "$(fzf --zsh)"
@@ -22,3 +20,19 @@ source '/usr/share/zsh-antidote/antidote.zsh'
 antidote load
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/opt/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+source /usr/share/nvm/init-nvm.sh
