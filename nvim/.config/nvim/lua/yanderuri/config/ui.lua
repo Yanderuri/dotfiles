@@ -4,6 +4,10 @@ return
 		"folke/noice.nvim",
 		opts = {
 			-- add any options here
+			presets = {
+				    command_palette = true, -- position the cmdline and popupmenu together
+				    long_message_to_split = true, -- long messages will be sent to a split
+			},
 		},
 		dependencies = {
 			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
