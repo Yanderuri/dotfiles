@@ -16,24 +16,34 @@ require("mason-lspconfig").setup_handlers{
 	end,
 }
 
+
 -- Autocomplete sources
 local cmp = require('cmp')
 -- https://github.com/hrsh7th/nvim-cmp/wiki/List-of-sources
 cmp.setup({
-  sources = {
-    {name = 'nvim_lsp'},
-    {name = "buffer"},
-  },
-  mapping = cmp.mapping.preset.insert({
-    -- Enter key confirms completion item
-    ['<CR>'] = cmp.mapping.confirm({select = false}),
+	sources = {
+		{name = 'nvim_lsp'},
+		{
+			name = 'ctags',
+			option = {
+				executable = "ctags",
+				trigger_characters = {"."},
+				trigger_characters_ft = { c = {".", "->"}},
+			}
+		},
+		{name = 'luasnip'},
+		{name = "buffer"},
+	},
+	mapping = cmp.mapping.preset.insert({
+		-- Enter key confirms completion item
+		['<CR>'] = cmp.mapping.confirm({select = false}),
 
-    -- Ctrl + space triggers completion menu
-    ['<C-Space>'] = cmp.mapping.complete(),
-  }),
-  snippet = {
-    expand = function(args)
-      require('luasnip').lsp_expand(args.body)
-    end,
-  },
+		-- Ctrl + space triggers completion menu
+		['<C-Space>'] = cmp.mapping.complete(),
+	}),
+	snippet = {
+		expand = function(args)
+			require('luasnip').lsp_expand(args.body)
+		end,
+	},
 })

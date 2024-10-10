@@ -18,6 +18,10 @@ return {
 			"nvim-neotest/nvim-nio",
 		},
 	},
+	{
+		"delphinus/cmp-ctags",
+		ft = {'c', 'h'}
+	},
 	{"Civitasv/cmake-tools.nvim"},
 	{"mfussenegger/nvim-lint"},
 	{"mhartington/formatter.nvim"},
